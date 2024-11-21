@@ -538,6 +538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txt_Time: {fileID: 1729942290}
+  btn_Good: {fileID: 859627378459384708}
 --- !u!1001 &1619688589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1075,6 +1076,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6704078748614436274, guid: 993752fbcb2086e458027df78a367e2d, type: 3}
   m_PrefabInstance: {fileID: 859627378459384706}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &859627378459384708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1131046127589437530, guid: 993752fbcb2086e458027df78a367e2d, type: 3}
+  m_PrefabInstance: {fileID: 859627378459384706}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
