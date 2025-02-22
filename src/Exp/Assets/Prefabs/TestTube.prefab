@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   liquid: {fileID: 9155157804912538098}
+  bubbleBorder: {fileID: 7176705279626080833}
   liquidAmount: 0
 --- !u!1001 &756930005970553739
 PrefabInstance:
@@ -228,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6552138686940184687, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.015
+      value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 6552138686940184687, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -274,5 +275,10 @@ PrefabInstance:
 --- !u!4 &1314616898809189008 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6552138686940184687, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
+  m_PrefabInstance: {fileID: 5247725395256890111}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7176705279626080833 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3119707137918181566, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
   m_PrefabInstance: {fileID: 5247725395256890111}
   m_PrefabAsset: {fileID: 0}
