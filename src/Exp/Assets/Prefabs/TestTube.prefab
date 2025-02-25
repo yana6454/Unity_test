@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: -3187267688378093534}
   - component: {fileID: 815032721114138637}
   - component: {fileID: 68342674301725987}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestTube
-  m_TagString: Selectable
+  m_TagString: TestTube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LiquidTestTube
       objectReference: {fileID: 0}
+    - target: {fileID: 4463548252312724092, guid: 74cf4697c317f6f42987eef04f16cdeb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8470286080359365241, guid: 74cf4697c317f6f42987eef04f16cdeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -225,6 +229,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5468512139057648038}
     m_Modifications:
+    - target: {fileID: 2490682905469369507, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697767085420087932, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6552138686940184687, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -268,6 +280,10 @@ PrefabInstance:
     - target: {fileID: 8441945083114069727, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
       propertyPath: m_Name
       value: ps_Bubbles
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441945083114069727, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

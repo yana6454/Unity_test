@@ -26,21 +26,31 @@ public class SelectManager : MonoBehaviour
         Ray ray = gameCamera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo)
-            && hitInfo.collider.gameObject.tag == "Selectable")
+            && hitInfo.collider.gameObject.layer == 6) // 6 = "Selectable" layer index.
         {
+            var hitObject = hitInfo.collider.gameObject;
+
             if (selectedObject is null)
             {
-                selectedObject = hitInfo.collider.gameObject;
-                Debug.Log($"{selectedObject.name} was selected");
+                selectedObject = hitObject;
+                Debug.Log($"Selected {selectedObject.name}");
             }
-            else if (selectedObject.Equals(hitInfo.collider.gameObject))
+            else if (selectedObject.Equals(hitObject))
             {
-                Debug.Log($"{selectedObject.name} was DEselected");
+                Debug.Log($"DEselected {selectedObject.name}");
                 selectedObject = null;
             }
             else
             {
-                // [TODO]: Add logic for combination of two selected objects.
+                if (selectedObject.tag == "TestTube" && hitObject.tag == "TestTubeStand")
+                {
+                    var stand = hitObject.GetComponent<TestTubeStand>();
+                    var tube = selectedObject.GetComponent<TestTube>();
+                    stand.AddTube(tube);
+
+                    Debug.Log($"DEselected {selectedObject.name}");
+                    selectedObject = null;
+                }
             }
         }
     }
