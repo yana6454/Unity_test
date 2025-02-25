@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 68342674301725987}
   m_Layer: 0
   m_Name: TestTube
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,6 +154,7 @@ MonoBehaviour:
   liquidAmount: 0
   bubbleBorder: {fileID: 7176705279626080833}
   ps_Bubbles: {fileID: 4993461902950117675}
+  reactionPower: 0
 --- !u!1001 &756930005970553739
 PrefabInstance:
   m_ObjectHideFlags: 0
