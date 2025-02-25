@@ -23,6 +23,10 @@ public class TestTube : MonoBehaviour
     [SerializeField]
     private ParticleSystem ps_Bubbles;
 
+    [SerializeField]
+    [Range(0.0f, 1.0f)]
+    private float reactionPower = 0.0f;
+
     private void FixedUpdate()
     {
         if (liquid.localScale.y != liquidAmount)
@@ -37,6 +41,11 @@ public class TestTube : MonoBehaviour
             Vector3 borderPosition = bubbleBorder.localPosition;
             borderPosition.z = bubbleBorderHeight;
             bubbleBorder.localPosition = borderPosition;
+        }
+
+        if (ps_Bubbles.emissionRate != reactionPower)
+        {
+            ps_Bubbles.emissionRate = reactionPower * 100;
         }
     }
 }
