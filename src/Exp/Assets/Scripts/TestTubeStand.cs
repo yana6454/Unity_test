@@ -10,7 +10,7 @@ public class TestTubeStand : MonoBehaviour
 {
     private CancellationTokenSource cts = new();
 
-    private const float MovingDuration = 6f;
+    private const float MovingDuration = 2f;
 
     [SerializeField]
     private List<Transform> tubePositions;
