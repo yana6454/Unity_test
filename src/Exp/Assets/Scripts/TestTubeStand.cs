@@ -43,17 +43,23 @@ public class TestTubeStand : MonoBehaviour
     private async UniTask MoveTubeAsync(TestTube tube, Transform target, CancellationToken token)
     {
         var tubeTransform = tube.transform;
+        var direction = target.position - tubeTransform.transform.position;
 
         float timer = 0f;
-        var startPosition = tubeTransform.position;
         var startRotation = tubeTransform.rotation;
 
         while (timer < MovingDuration && !token.IsCancellationRequested)
         {
             float step = timer / MovingDuration;
+            float offsetY = -1f * (step - 0.5f);
 
-            tubeTransform.position = Vector3.Lerp(startPosition, target.position, step);
-            tubeTransform.rotation = Quaternion.Lerp(startRotation, target.rotation, step);
+            if (step <= 0.667f)
+            {
+                tubeTransform.position += direction * (Time.unscaledDeltaTime / MovingDuration) * 1.5f;
+            }
+
+            tubeTransform.position += Vector3.up * offsetY * Time.unscaledDeltaTime;
+            tubeTransform.rotation = Quaternion.Lerp(startRotation, target.rotation, step * 1.5f);
 
             await UniTask.NextFrame(cancellationToken: token);
             timer += Time.unscaledDeltaTime;
