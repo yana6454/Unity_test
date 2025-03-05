@@ -13,17 +13,14 @@ public class TestTube : MonoBehaviour
     private const float MaxBubbleBorderHeight = 0.2f;
     private const float MinBubbleBorderHeight = 0f;
     private const float LiquidSpeed = 0.5f;
+    private const float MovingDuration = 2.0f;
 
     [Header("Liquid")]
     [SerializeField]
     private Transform liquid;
 
-    [Header("SolidReactive")]
-    [SerializeField]
-    private Transform reactivePosition;
-
     [Header("Bubbles")]
-    [SerializeField]
+    [SerializeField]    
     private Transform bubbleBorder;
 
     [SerializeField]
@@ -63,10 +60,11 @@ public class TestTube : MonoBehaviour
 
     public void AddSolidReactive(GameObject reactive, float reactionPower)
     {
+        ps_Bubbles.gameObject.SetActive(false);
         reactive.transform.parent = transform;
 
         // [TODO] Move Reactive logic.
-        reactive.transform.position = reactivePosition.position;
+        MoveReactiveToTube(reactive.transform, cts.Token).Forget();
 
         bubblesShape.mesh = reactive.GetComponent<MeshFilter>().mesh;
         bubblesShapeTransform.localScale = reactive.transform.localScale;
@@ -94,6 +92,25 @@ public class TestTube : MonoBehaviour
         Vector3 borderPosition = bubbleBorder.localPosition;
         borderPosition.z = bubbleBorderHeight;
         bubbleBorder.localPosition = borderPosition;
+    }
+
+    private async UniTask MoveReactiveToTube(Transform reactive, CancellationToken token)
+    {
+        float timer = 0f;
+        var startPosition = reactive.position;
+
+        while (timer < MovingDuration && !token.IsCancellationRequested)
+        {
+            float step = timer / MovingDuration;
+
+            reactive.position = Vector3.Lerp(startPosition, bubblesShapeTransform.position, step);
+
+            await UniTask.NextFrame(cancellationToken: token);
+            timer += Time.unscaledDeltaTime;
+        }
+
+        reactive.position = bubblesShapeTransform.position;
+        ps_Bubbles.gameObject.SetActive(true);
     }
 
     private void OnDestroy()

@@ -13,6 +13,8 @@ public class SolidReactive : MonoBehaviour
 
     public (GameObject, float) Generate()
     {
-        return (Instantiate(reactivePrefab), reactionPower);
+        var reactive = Instantiate(reactivePrefab, transform);
+        reactive.transform.position += Vector3.up * 0.03f;
+        return (reactive, reactionPower);
     }
 }
