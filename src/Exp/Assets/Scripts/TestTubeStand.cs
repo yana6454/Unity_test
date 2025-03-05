@@ -34,31 +34,34 @@ public class TestTubeStand : MonoBehaviour
             if (tubes[i] == null)
             {
                 tubes[i] = tube;
-                MoveTubeAsync(tube.transform, tubePositions[i], cts.Token).Forget();
+                MoveTubeAsync(tube, tubePositions[i], cts.Token).Forget();
                 break;
             }
         }
     }
 
-    private async UniTask MoveTubeAsync(Transform tube, Transform target, CancellationToken token)
+    private async UniTask MoveTubeAsync(TestTube tube, Transform target, CancellationToken token)
     {
+        var tubeTransform = tube.transform;
+
         float timer = 0f;
-        var startPosition = tube.position;
-        var startRotation = tube.rotation;
+        var startPosition = tubeTransform.position;
+        var startRotation = tubeTransform.rotation;
 
         while (timer < MovingDuration && !token.IsCancellationRequested)
         {
             float step = timer / MovingDuration;
 
-            tube.position = Vector3.Lerp(startPosition, target.position, step);
-            tube.rotation = Quaternion.Lerp(startRotation, target.rotation, step);
+            tubeTransform.position = Vector3.Lerp(startPosition, target.position, step);
+            tubeTransform.rotation = Quaternion.Lerp(startRotation, target.rotation, step);
 
             await UniTask.NextFrame(cancellationToken: token);
             timer += Time.unscaledDeltaTime;
         }
 
-        tube.position = target.position;
-        tube.rotation = target.rotation;
+        tubeTransform.position = target.position;
+        tubeTransform.rotation = target.rotation;
+        tube.SetLiquid(0.3f, true);
     }
 
     private void OnDestroy()

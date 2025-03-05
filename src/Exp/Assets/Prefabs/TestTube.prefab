@@ -152,9 +152,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: {fileID: 9155157804912538098}
   liquidAmount: 0
+  reactivePosition: {fileID: 9194119942692025175}
   bubbleBorder: {fileID: 7176705279626080833}
   ps_Bubbles: {fileID: 4993461902950117675}
-  reactionPower: 0
+  bubblesShape: {fileID: 7102051493594949484}
+  bubblesShapeTransform: {fileID: 9194119942692025175}
 --- !u!1001 &756930005970553739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,9 +231,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5468512139057648038}
     m_Modifications:
+    - target: {fileID: 2154288238268384259, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2490682905469369507, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697767085420087932, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
+      propertyPath: m_Name
+      value: Shape
       objectReference: {fileID: 0}
     - target: {fileID: 4697767085420087932, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
       propertyPath: m_Layer
@@ -300,8 +310,18 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 981781787784831956, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
   m_PrefabInstance: {fileID: 5247725395256890111}
   m_PrefabAsset: {fileID: 0}
+--- !u!33 &7102051493594949484 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 3052354530438493587, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
+  m_PrefabInstance: {fileID: 5247725395256890111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7176705279626080833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3119707137918181566, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
+  m_PrefabInstance: {fileID: 5247725395256890111}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9194119942692025175 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3984481779773563304, guid: 133c5d9fd8f025347b2a4bba58b870e8, type: 3}
   m_PrefabInstance: {fileID: 5247725395256890111}
   m_PrefabAsset: {fileID: 0}

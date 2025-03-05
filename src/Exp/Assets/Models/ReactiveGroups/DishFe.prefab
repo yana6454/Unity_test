@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 9130077683199041191}
   - component: {fileID: 6327996853624921433}
   - component: {fileID: 2494494640856097466}
-  m_Layer: 0
+  - component: {fileID: -1627058471186483997}
+  m_Layer: 6
   m_Name: DishFe
-  m_TagString: Untagged
+  m_TagString: SolidReactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,6 +135,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-1627058471186483997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604831736488940457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e6a8216f452134ab7c82b2cf82cd80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reactivePrefab: {fileID: 8532695254624033643, guid: f467bdc2deec6b94da42ba66290629e9, type: 3}
+  reactionPower: 0.25
 --- !u!1 &1448310550109916032
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +160,7 @@ GameObject:
   - component: {fileID: 3723592644367423767}
   - component: {fileID: 8752345173500123414}
   - component: {fileID: 6823541655430193464}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fe
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -51,6 +51,17 @@ public class SelectManager : MonoBehaviour
                     Debug.Log($"DEselected {selectedObject.name}");
                     selectedObject = null;
                 }
+                else if (selectedObject.tag == "SolidReactive" && hitObject.tag == "TestTube")
+                {
+                    var reactiveGroup = selectedObject.GetComponent<SolidReactive>();
+                    var tube = hitObject.GetComponent<TestTube>();
+                    var reactiveData = reactiveGroup.Generate();
+
+                    tube.AddSolidReactive(reactiveData.Item1, reactiveData.Item2);
+
+                    Debug.Log($"DEselected {selectedObject.name}");
+                    selectedObject = null;
+                }
             }
         }
     }
