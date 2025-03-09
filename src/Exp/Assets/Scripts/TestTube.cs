@@ -59,18 +59,32 @@ public class TestTube : SelectableBase
         }
     }
 
-    public void AddSolidReactive(GameObject reactive, float reactionPower)
+    /// <inheritdoc/>
+    public override void TryCombine(ISelectable combinedObject)
     {
-        ps_Bubbles.gameObject.SetActive(false);
-        reactive.transform.parent = transform;
+        if (combinedObject.Type == SelectableType.SolidReactive)
+        {
+            var reactive = combinedObject.gameObject.GetComponent<SolidReactive>().Generate();
 
-        // [TODO] Move Reactive logic.
-        MoveReactiveToTube(reactive.transform, cts.Token).Forget();
+            var reactionPower = Mathf.Clamp01(reactive.Item2);
+            ps_Bubbles.emissionRate = reactionPower * 100;
+
+            AddSolidReactiveAsync(reactive.Item1.transform, cts.Token).Forget();
+        }
+    }
+
+    private async UniTask AddSolidReactiveAsync(Transform reactive, CancellationToken token)
+    {
+        interactable = false;
+        ps_Bubbles.gameObject.SetActive(false);
+        reactive.parent = transform;
+
+        await MoveAsync(reactive, bubblesShapeTransform, false, token);
 
         bubblesShape.mesh = reactive.GetComponent<MeshFilter>().mesh;
-        bubblesShapeTransform.localScale = reactive.transform.localScale;
-        reactionPower = Mathf.Clamp01(reactionPower);
-        ps_Bubbles.emissionRate = reactionPower * 100;
+        bubblesShapeTransform.localScale = reactive.localScale;
+        
+        ps_Bubbles.gameObject.SetActive(true);
     }
 
     private async UniTask SetLiquidAsync(float newLiquidAmount, CancellationToken token)
@@ -93,25 +107,6 @@ public class TestTube : SelectableBase
         Vector3 borderPosition = bubbleBorder.localPosition;
         borderPosition.z = bubbleBorderHeight;
         bubbleBorder.localPosition = borderPosition;
-    }
-
-    private async UniTask MoveReactiveToTube(Transform reactive, CancellationToken token)
-    {
-        float timer = 0f;
-        var startPosition = reactive.position;
-
-        while (timer < MovingDuration && !token.IsCancellationRequested)
-        {
-            float step = timer / MovingDuration;
-
-            reactive.position = Vector3.Lerp(startPosition, bubblesShapeTransform.position, step);
-
-            await UniTask.NextFrame(cancellationToken: token);
-            timer += Time.unscaledDeltaTime;
-        }
-
-        reactive.position = bubblesShapeTransform.position;
-        ps_Bubbles.gameObject.SetActive(true);
     }
 
     private void OnDestroy()

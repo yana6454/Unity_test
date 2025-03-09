@@ -17,4 +17,8 @@ public class SolidReactive : SelectableBase
         reactive.transform.position += Vector3.up * 0.03f;
         return (reactive, reactionPower);
     }
+
+    public override void TryCombine(ISelectable combinedObject)
+    {
+    }
 }

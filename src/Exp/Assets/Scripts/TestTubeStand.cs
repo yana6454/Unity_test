@@ -10,8 +10,6 @@ public class TestTubeStand : SelectableBase
 {
     private CancellationTokenSource cts = new();
 
-    private const float MovingDuration = 2f;
-
     [Header("Stand")]
     [SerializeField]
     private List<Transform> tubePositions;
@@ -25,7 +23,15 @@ public class TestTubeStand : SelectableBase
         { 4, null },
     };
 
-    public void AddTube(TestTube tube)
+    public override void TryCombine(ISelectable combinedObject)
+    {
+        if (combinedObject.Type == SelectableType.TestTube)
+        {
+            AddTubeAsync(combinedObject.gameObject.GetComponent<TestTube>(), cts.Token).Forget();
+        }
+    }
+
+    private async UniTask AddTubeAsync(TestTube tube, CancellationToken token)
     {
         tube.gameObject.GetComponent<Collider>().isTrigger = true;
         tube.gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -35,40 +41,11 @@ public class TestTubeStand : SelectableBase
             if (tubes[i] == null)
             {
                 tubes[i] = tube;
-                MoveTubeAsync(tube, tubePositions[i], cts.Token).Forget();
+                await MoveAsync(tube.transform, tubePositions[i], true, token);
+                tube.SetLiquid(0.3f, true);
                 break;
             }
         }
-    }
-
-    private async UniTask MoveTubeAsync(TestTube tube, Transform target, CancellationToken token)
-    {
-        var tubeTransform = tube.transform;
-        var direction = target.position - tubeTransform.transform.position;
-
-        float timer = 0f;
-        var startRotation = tubeTransform.rotation;
-
-        while (timer < MovingDuration && !token.IsCancellationRequested)
-        {
-            float step = timer / MovingDuration;
-            float offsetY = -1f * (step - 0.5f);
-
-            if (step <= 0.667f)
-            {
-                tubeTransform.position += direction * (Time.unscaledDeltaTime / MovingDuration) * 1.5f;
-            }
-
-            tubeTransform.position += Vector3.up * offsetY * Time.unscaledDeltaTime;
-            tubeTransform.rotation = Quaternion.Lerp(startRotation, target.rotation, step * 1.5f);
-
-            await UniTask.NextFrame(cancellationToken: token);
-            timer += Time.unscaledDeltaTime;
-        }
-
-        tubeTransform.position = target.position;
-        tubeTransform.rotation = target.rotation;
-        tube.SetLiquid(0.3f, true);
     }
 
     private void OnDestroy()
