@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 /// <summary>
 /// Class for control Test Tube.
 /// </summary>
-public class TestTube : MonoBehaviour
+public class TestTube : SelectableBase
 {
     private CancellationTokenSource cts = new();
 
@@ -32,8 +32,9 @@ public class TestTube : MonoBehaviour
     [SerializeField]
     private Transform bubblesShapeTransform;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         SetLiquid(0.0f, false);
         ps_Bubbles.emissionRate = 0.0f;
     }

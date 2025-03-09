@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SolidReactive : MonoBehaviour
+public class SolidReactive : SelectableBase
 {
     [SerializeField]
     private GameObject reactivePrefab;

@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: -3187267688378093534}
   - component: {fileID: 815032721114138637}
   - component: {fileID: 68342674301725987}
+  - component: {fileID: 2961881098669111305}
   m_Layer: 6
   m_Name: TestTube
-  m_TagString: TestTube
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,13 +151,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c96c3b2b8c75245b35766ab8d0a428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   liquid: {fileID: 9155157804912538098}
-  liquidAmount: 0
-  reactivePosition: {fileID: 9194119942692025175}
   bubbleBorder: {fileID: 7176705279626080833}
   ps_Bubbles: {fileID: 4993461902950117675}
   bubblesShape: {fileID: 7102051493594949484}
   bubblesShapeTransform: {fileID: 9194119942692025175}
+--- !u!114 &2961881098669111305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661188770769472284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.49803922, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &756930005970553739
 PrefabInstance:
   m_ObjectHideFlags: 0

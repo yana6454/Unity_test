@@ -6,12 +6,13 @@ using UnityEngine;
 /// <summary>
 /// Controlls stand for Test Tubes.
 /// </summary>
-public class TestTubeStand : MonoBehaviour
+public class TestTubeStand : SelectableBase
 {
     private CancellationTokenSource cts = new();
 
     private const float MovingDuration = 2f;
 
+    [Header("Stand")]
     [SerializeField]
     private List<Transform> tubePositions;
 

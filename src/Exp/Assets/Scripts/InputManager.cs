@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            PrimaryButtonClicked.Invoke();
+            PrimaryButtonClicked?.Invoke();
         }
     }
 }
