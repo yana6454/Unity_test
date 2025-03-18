@@ -38,6 +38,12 @@ public class TestTubeStand : SelectableBase
 
         for (int i = 0; i < tubePositions.Count; i++)
         {
+            if (tube.Equals(tubes[i]))
+            {
+                tubes[i] = null;
+                continue;
+            }
+
             if (tubes[i] == null)
             {
                 tubes[i] = tube;
