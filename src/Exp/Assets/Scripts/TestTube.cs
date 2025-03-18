@@ -48,7 +48,7 @@ public class TestTube : SelectableBase
         else
         {
             Vector3 scale = liquid.localScale;
-            scale.y = 0f;
+            scale.y = liquidAmount;
             liquid.localScale = scale;
             liquid.gameObject.SetActive(liquidAmount != 0.0f);
             ps_Bubbles.gameObject.SetActive(liquidAmount != 0.0f);
