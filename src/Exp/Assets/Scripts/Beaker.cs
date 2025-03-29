@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 /// <summary>
 /// Class for control Beaker.
@@ -17,10 +16,18 @@ public class Beaker : SelectableBase
     [SerializeField]
     private Transform liquid;
 
+    [SerializeField]
+    private Transform startPosition;
+
     protected override void Start()
     {
         base.Start();
         SetLiquid(1.0f, false);
+    }
+
+    /// <inheritdoc/>
+    public override void TryCombine(ISelectable combinedObject)
+    {
     }
 
     public void SetLiquid(float liquidAmount, bool smooth)
@@ -38,10 +45,9 @@ public class Beaker : SelectableBase
         }
     }
 
-    /// <inheritdoc/>
-    public override void TryCombine(ISelectable combinedObject)
+    public void GetLiquid(TestTube tube, Transform targetTransform)
     {
-
+        GetLiquidAsync(tube, targetTransform, cts.Token).Forget();
     }
 
     private async UniTask SetLiquidAsync(float newLiquidAmount, CancellationToken token)
@@ -58,6 +64,14 @@ public class Beaker : SelectableBase
         }
 
         liquid.gameObject.SetActive(newLiquidAmount != 0.0f);
+    }
+
+    private async UniTask GetLiquidAsync(TestTube tube, Transform targetTransform, CancellationToken token)
+    {
+        await MoveAsync(transform, targetTransform, true, token);
+        tube.SetLiquid(0.3f, true);
+        await UniTask.WaitForSeconds(0.6f, cancellationToken: token);
+        await MoveAsync(transform, startPosition, true, token);
     }
 
     private void OnDestroy()

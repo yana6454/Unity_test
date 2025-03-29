@@ -48,7 +48,6 @@ public class TestTubeStand : SelectableBase
             {
                 tubes[i] = tube;
                 await MoveAsync(tube.transform, tubePositions[i], true, token);
-                tube.SetLiquid(0.3f, true);
                 break;
             }
         }

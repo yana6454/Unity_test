@@ -32,11 +32,35 @@ public class TestTube : SelectableBase
     [SerializeField]
     private Transform bubblesShapeTransform;
 
+    [Header("Animations")]
+    [SerializeField]
+    private Transform beakerPosition;
+
     protected override void Start()
     {
         base.Start();
         SetLiquid(0.0f, false);
         ps_Bubbles.emissionRate = 0.0f;
+    }
+
+    /// <inheritdoc/>
+    public override void TryCombine(ISelectable combinedObject)
+    {
+        switch (combinedObject.Type)
+        {
+            case SelectableType.SolidReactive:
+                var reactive = combinedObject.gameObject.GetComponent<SolidReactive>().Generate();
+
+                var reactionPower = Mathf.Clamp01(reactive.Item2);
+                ps_Bubbles.emissionRate = reactionPower * 100;
+
+                AddSolidReactiveAsync(reactive.Item1.transform, cts.Token).Forget();
+                break;
+            case SelectableType.Beaker:
+                var beaker = combinedObject.gameObject.GetComponent<Beaker>();
+                beaker.GetLiquid(this, beakerPosition);
+                break;
+        }
     }
 
     public void SetLiquid(float liquidAmount, bool smooth)
@@ -59,23 +83,8 @@ public class TestTube : SelectableBase
         }
     }
 
-    /// <inheritdoc/>
-    public override void TryCombine(ISelectable combinedObject)
-    {
-        if (combinedObject.Type == SelectableType.SolidReactive)
-        {
-            var reactive = combinedObject.gameObject.GetComponent<SolidReactive>().Generate();
-
-            var reactionPower = Mathf.Clamp01(reactive.Item2);
-            ps_Bubbles.emissionRate = reactionPower * 100;
-
-            AddSolidReactiveAsync(reactive.Item1.transform, cts.Token).Forget();
-        }
-    }
-
     private async UniTask AddSolidReactiveAsync(Transform reactive, CancellationToken token)
     {
-        interactable = false;
         ps_Bubbles.gameObject.SetActive(false);
         reactive.parent = transform;
 

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2335616617722173767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4624448130044464122}
+  m_Layer: 0
+  m_Name: BeakerPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4624448130044464122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2335616617722173767}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.21554288, y: 0.8112442, z: -0.13957022, w: 0.5253041}
+  m_LocalPosition: {x: 0.0506, y: 0.1668, z: 0.1128}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5468512139057648038}
+  m_LocalEulerAnglesHint: {x: 0, y: 114.152, z: -29.759}
 --- !u!1 &4661188770769472284
 GameObject:
   m_ObjectHideFlags: 0
@@ -37,6 +68,7 @@ Transform:
   m_Children:
   - {fileID: 9155157804912538098}
   - {fileID: 1314616898809189008}
+  - {fileID: 4624448130044464122}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8956486773811076611
@@ -157,6 +189,7 @@ MonoBehaviour:
   ps_Bubbles: {fileID: 4993461902950117675}
   bubblesShape: {fileID: 7102051493594949484}
   bubblesShapeTransform: {fileID: 9194119942692025175}
+  beakerPosition: {fileID: 4624448130044464122}
 --- !u!114 &2961881098669111305
 MonoBehaviour:
   m_ObjectHideFlags: 0

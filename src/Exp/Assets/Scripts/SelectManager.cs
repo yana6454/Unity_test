@@ -10,6 +10,7 @@ public static class SelectManager
     {
         (SelectableType.TestTube, SelectableType.TestTubeStand),
         (SelectableType.SolidReactive, SelectableType.TestTube),
+        (SelectableType.Beaker, SelectableType.TestTube),
     };
 
     private static ISelectable selectedObject;
