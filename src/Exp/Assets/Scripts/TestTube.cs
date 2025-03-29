@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
 /// <summary>
@@ -38,7 +39,7 @@ public class TestTube : SelectableBase
     protected override void Start()
     {
         base.Start();
-        SetLiquid(0.0f, false);
+        SetLiquid(0.0f, false, false);
         ps_Bubbles.emissionRate = 0.0f;
     }
 
@@ -56,11 +57,16 @@ public class TestTube : SelectableBase
         }
     }
 
-    public void SetLiquid(float liquidAmount, bool smooth)
+    public void SetLiquid(float liquidAmount, bool smooth, bool add = true)
     {
+        if (add)
+        {
+            liquidAmount = Mathf.Clamp01(liquidAmount + liquid.localScale.y);
+        }
+
         if (smooth)
         {
-            SetLiquidAsync(Mathf.Clamp01(liquidAmount), CTS.Token).Forget();
+            SetLiquidAsync(liquidAmount, CTS.Token).Forget();
         }
         else
         {

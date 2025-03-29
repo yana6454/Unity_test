@@ -15,6 +15,9 @@ public static class SelectManager
 
     private static ISelectable selectedObject;
 
+    public static Color AbleToSelectColor = new Color(1.0f, 1.0f, 0.0f, 0.5f); // Yellow color.
+    public static Color SelectColor = new Color(1.0f, 0.5f, 0.0f, 1.0f); // Orange color.
+
     public static bool TrySelectObject(ISelectable hitObject)
     {
         if (selectedObject != null)

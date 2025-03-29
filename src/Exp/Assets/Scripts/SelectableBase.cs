@@ -17,6 +17,8 @@ public abstract class SelectableBase : MonoBehaviour, ISelectable, IMovable
 
     protected bool interactable = true;
 
+    private bool isSelected = false;
+
     /// <inheritdoc/>
     public SelectableType Type => type;
 
@@ -37,16 +39,36 @@ public abstract class SelectableBase : MonoBehaviour, ISelectable, IMovable
         }
     }
 
-    /// <inheritdoc/>
-    public void Desilect()
+    private void OnMouseEnter()
     {
-        outline.enabled = false;
+        if (interactable && !isSelected)
+        {
+            outline.OutlineColor = SelectManager.AbleToSelectColor;
+            outline.enabled = true;
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (interactable && !isSelected)
+        {
+            outline.enabled = false;
+        }
     }
 
     /// <inheritdoc/>
     public void Select()
     {
+        outline.OutlineColor = SelectManager.SelectColor;
         outline.enabled = true;
+        isSelected = true;
+    }
+
+    /// <inheritdoc/>
+    public void Desilect()
+    {
+        outline.enabled = false;
+        isSelected = false;
     }
 
     /// <inheritdoc/>
