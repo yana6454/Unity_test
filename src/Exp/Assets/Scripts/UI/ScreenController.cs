@@ -1,10 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Device;
 
 public class ScreenController : MonoBehaviour
 {
+    [Header("Cameras")]
+    [SerializeField]
+    private Camera menuCamera;
+
+    [SerializeField]
+    private Camera gameCamera;
+
+    [Header("Screens")]
     [SerializeField]
     private ScreenMenu menu;
 
@@ -18,9 +23,19 @@ public class ScreenController : MonoBehaviour
 
     private void Awake()
     {
+        menuCamera.enabled = true;
+        gameCamera.enabled = false;
+
         screens[0] = menu;
         screens[1] = game;
         screens[2] = task;
+
+        menu.StartClicked += OnStartClicked;
+    }
+
+    private void OnDestroy()
+    {
+        menu.StartClicked -= OnStartClicked;
     }
 
     private void Start()
@@ -31,5 +46,13 @@ public class ScreenController : MonoBehaviour
         }
 
         menu.Show();
+    }
+
+    private void OnStartClicked()
+    {
+        menu.Hide();
+        game.Show();
+        menuCamera.enabled = false;
+        gameCamera.enabled = true;
     }
 }

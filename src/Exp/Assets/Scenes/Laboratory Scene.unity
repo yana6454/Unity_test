@@ -4480,7 +4480,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   m_Layer: 0
-  m_Name: MainCamera
+  m_Name: GameCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4536,7 +4536,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -9934,6 +9934,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 23646699623217809, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
+      propertyPath: gameCamera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 23646699623217809, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
+      propertyPath: menuCamera
+      value: 
+      objectReference: {fileID: 1332671666}
     - target: {fileID: 252211161578310921, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
       propertyPath: m_Camera
       value: 
