@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Outline), typeof(Collider))]
 public abstract class SelectableBase : MonoBehaviour, ISelectable, IMovable
 {
+    protected CancellationTokenSource CTS = new();
+
     private const float MovingDuration = 2f;
 
     [Header("Selectable")]
@@ -51,44 +53,67 @@ public abstract class SelectableBase : MonoBehaviour, ISelectable, IMovable
     public abstract void TryCombine(ISelectable combinedObject);
 
     /// <inheritdoc/>
-    public void Move(Transform movedObject, Transform target, bool rotate, CancellationToken token)
+    public virtual void Move(Transform target, bool rotate, bool arch)
     {
-        MoveAsync(movedObject, target, rotate, token).Forget();
+        MoveAsync(target, rotate, arch, MovingDuration, CTS.Token).Forget();
     }
 
-    protected async UniTask MoveAsync(Transform movedObject, Transform target, bool rotate, CancellationToken token)
+    /// <inheritdoc/>
+    public virtual void Move(Transform target, bool rotate, bool arch, float duration)
     {
-        var direction = target.position - movedObject.transform.position;
+        MoveAsync(target, rotate, arch, duration, CTS.Token).Forget();
+    }
+
+    private async UniTask MoveAsync(Transform target, bool rotate, bool arch, float duration, CancellationToken token)
+    {
+        var direction = target.position - transform.position;
 
         float timer = 0f;
-        var startRotation = movedObject.rotation;
+        var startRotation = transform.rotation;
 
-        while (timer < MovingDuration && !token.IsCancellationRequested)
+        while (timer < duration && !token.IsCancellationRequested)
         {
-            float step = timer / MovingDuration;
+            float step = timer / duration;
             float offsetY = -1f * (step - 0.5f);
 
-            if (step <= 0.667f)
+            if (arch)
             {
-                movedObject.position += direction * (Time.unscaledDeltaTime / MovingDuration) * 1.5f;
+                if (step <= 0.667f)
+                {
+                    transform.position += direction * (Time.unscaledDeltaTime / duration) * 1.5f;
+                }
+                transform.position += Vector3.up * offsetY * Time.unscaledDeltaTime;
+
+                if (rotate)
+                {
+                    transform.rotation = Quaternion.Lerp(startRotation, target.rotation, step * 1.5f);
+                }
             }
-
-            movedObject.position += Vector3.up * offsetY * Time.unscaledDeltaTime;
-
-            if (rotate)
+            else
             {
-                movedObject.rotation = Quaternion.Lerp(startRotation, target.rotation, step * 1.5f);
+                transform.position += direction * (Time.unscaledDeltaTime / duration);
+
+                if (rotate)
+                {
+                    transform.rotation = Quaternion.Lerp(startRotation, target.rotation, step);
+                }
             }
 
             await UniTask.NextFrame(cancellationToken: token);
             timer += Time.unscaledDeltaTime;
         }
 
-        movedObject.position = target.position;
+        transform.position = target.position;
 
         if (rotate)
         {
-            movedObject.rotation = target.rotation;
+            transform.rotation = target.rotation;
         }
+    }
+
+    private void OnDestroy()
+    {
+        CTS?.Cancel();
+        CTS = null;
     }
 }

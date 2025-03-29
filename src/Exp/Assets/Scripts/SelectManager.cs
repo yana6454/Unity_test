@@ -9,7 +9,7 @@ public static class SelectManager
     public static readonly List<(SelectableType, SelectableType)> Interactions = new()
     {
         (SelectableType.TestTube, SelectableType.TestTubeStand),
-        (SelectableType.SolidReactive, SelectableType.TestTube),
+        (SelectableType.SolidReactiveGroup, SelectableType.TestTube),
         (SelectableType.Beaker, SelectableType.TestTube),
     };
 

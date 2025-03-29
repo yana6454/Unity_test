@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SolidReactive : SelectableBase
 {
-    [SerializeField]
-    private GameObject reactivePrefab;
-
-    [SerializeField]
     [Range(0.0f, 1.0f)]
     private float reactionPower = 0.0f;
 
-    public (GameObject, float) Generate()
+    private bool isInitialized = false;
+
+    public float ReactionPower => reactionPower;
+
+    public void Initialize(float reactionPower)
     {
-        var reactive = Instantiate(reactivePrefab, transform);
-        reactive.transform.position += Vector3.up * 0.03f;
-        return (reactive, reactionPower);
+        if (isInitialized)
+        {
+            return;
+        }
+
+        this. reactionPower = reactionPower;
+        isInitialized = true;
     }
 
     public override void TryCombine(ISelectable combinedObject)

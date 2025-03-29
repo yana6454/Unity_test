@@ -7,10 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Beaker : SelectableBase
 {
-    private CancellationTokenSource cts = new();
-
     private const float LiquidSpeed = 0.5f;
-    private const float MovingDuration = 2.0f;
 
     [Header("Liquid")]
     [SerializeField]
@@ -34,7 +31,7 @@ public class Beaker : SelectableBase
     {
         if (smooth)
         {
-            SetLiquidAsync(Mathf.Clamp01(liquidAmount), cts.Token).Forget();
+            SetLiquidAsync(Mathf.Clamp01(liquidAmount), CTS.Token).Forget();
         }
         else
         {
@@ -47,7 +44,7 @@ public class Beaker : SelectableBase
 
     public void GetLiquid(TestTube tube, Transform targetTransform)
     {
-        GetLiquidAsync(tube, targetTransform, cts.Token).Forget();
+        GetLiquidAsync(tube, targetTransform, CTS.Token).Forget();
     }
 
     private async UniTask SetLiquidAsync(float newLiquidAmount, CancellationToken token)
@@ -68,15 +65,10 @@ public class Beaker : SelectableBase
 
     private async UniTask GetLiquidAsync(TestTube tube, Transform targetTransform, CancellationToken token)
     {
-        await MoveAsync(transform, targetTransform, true, token);
+        Move(targetTransform, true, false, 1f);
+        await UniTask.WaitForSeconds(1f, cancellationToken: token);
         tube.SetLiquid(0.3f, true);
         await UniTask.WaitForSeconds(0.6f, cancellationToken: token);
-        await MoveAsync(transform, startPosition, true, token);
-    }
-
-    private void OnDestroy()
-    {
-        cts?.Cancel();
-        cts = null;
+        Move(startPosition, true, false, 1f);
     }
 }

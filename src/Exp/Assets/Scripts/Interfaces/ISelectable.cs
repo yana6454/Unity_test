@@ -27,6 +27,6 @@ public enum SelectableType
     TestTube,
     TestTubeStand,
     Beaker,
-    SolidReactive,
+    SolidReactiveGroup,
     Liquid,
 }

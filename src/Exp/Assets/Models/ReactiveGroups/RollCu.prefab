@@ -177,8 +177,8 @@ GameObject:
   - component: {fileID: 4203545059545388122}
   - component: {fileID: 7461613936506389025}
   - component: {fileID: 7602794224729501567}
-  - component: {fileID: -7307268585030750160}
   - component: {fileID: 8394093900039346630}
+  - component: {fileID: 2520716869492288647}
   m_Layer: 6
   m_Name: RollCu
   m_TagString: SolidReactive
@@ -252,21 +252,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-7307268585030750160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6114918223218757313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6e6a8216f452134ab7c82b2cf82cd80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 3
-  reactivePrefab: {fileID: 7702903716389592237, guid: 3c25e5e2a063b834a9a25816acf5fb70, type: 3}
-  reactionPower: 0
 --- !u!114 &8394093900039346630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +270,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &2520716869492288647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6114918223218757313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4528642c3c95d429e1ae3ef4fdc8a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  reactivePrefab: {fileID: 4264945034711775311, guid: 3c25e5e2a063b834a9a25816acf5fb70, type: 3}
+  reactionPower: 0
 --- !u!1001 &5345328211168414550
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,5 +6,7 @@ using UnityEngine;
 /// </summary>
 public interface IMovable
 {
-    public void Move(Transform movedObject, Transform target, bool rotate, CancellationToken token);
+    public void Move(Transform target, bool rotate, bool arch, float duration);
+
+    public void Move(Transform target, bool rotate, bool arch);
 }

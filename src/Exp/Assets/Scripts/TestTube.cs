@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -8,8 +9,6 @@ using static UnityEngine.GraphicsBuffer;
 /// </summary>
 public class TestTube : SelectableBase
 {
-    private CancellationTokenSource cts = new();
-
     private const float MaxBubbleBorderHeight = 0.2f;
     private const float MinBubbleBorderHeight = 0f;
     private const float LiquidSpeed = 0.5f;
@@ -48,17 +47,11 @@ public class TestTube : SelectableBase
     {
         switch (combinedObject.Type)
         {
-            case SelectableType.SolidReactive:
-                var reactive = combinedObject.gameObject.GetComponent<SolidReactive>().Generate();
-
-                var reactionPower = Mathf.Clamp01(reactive.Item2);
-                ps_Bubbles.emissionRate = reactionPower * 100;
-
-                AddSolidReactiveAsync(reactive.Item1.transform, cts.Token).Forget();
+            case SelectableType.SolidReactiveGroup:
+                AddSolidReactive(combinedObject.gameObject.GetComponent<SolidReactiveGroup>().Generate());
                 break;
             case SelectableType.Beaker:
-                var beaker = combinedObject.gameObject.GetComponent<Beaker>();
-                beaker.GetLiquid(this, beakerPosition);
+                combinedObject.gameObject.GetComponent<Beaker>().GetLiquid(this, beakerPosition);
                 break;
         }
     }
@@ -67,7 +60,7 @@ public class TestTube : SelectableBase
     {
         if (smooth)
         {
-            SetLiquidAsync(Mathf.Clamp01(liquidAmount), cts.Token).Forget();
+            SetLiquidAsync(Mathf.Clamp01(liquidAmount), CTS.Token).Forget();
         }
         else
         {
@@ -83,16 +76,22 @@ public class TestTube : SelectableBase
         }
     }
 
-    private async UniTask AddSolidReactiveAsync(Transform reactive, CancellationToken token)
+    private void AddSolidReactive(SolidReactive reactive)
     {
-        ps_Bubbles.gameObject.SetActive(false);
-        reactive.parent = transform;
+        ps_Bubbles.emissionRate = Mathf.Clamp01(reactive.ReactionPower) * 100;
 
-        await MoveAsync(reactive, bubblesShapeTransform, false, token);
+        ps_Bubbles.gameObject.SetActive(false);
+        reactive.transform.parent = transform;
+        reactive.Move(bubblesShapeTransform, false, true);
 
         bubblesShape.mesh = reactive.GetComponent<MeshFilter>().mesh;
-        bubblesShapeTransform.localScale = reactive.localScale;
-        
+        bubblesShapeTransform.localScale = reactive.transform.localScale;
+        EnableBubblesAsync(CTS.Token).Forget();
+    }
+
+    private async UniTask EnableBubblesAsync(CancellationToken token)
+    {
+        await UniTask.WaitForSeconds(2, cancellationToken: token);
         ps_Bubbles.gameObject.SetActive(true);
     }
 
@@ -116,11 +115,5 @@ public class TestTube : SelectableBase
         Vector3 borderPosition = bubbleBorder.localPosition;
         borderPosition.z = bubbleBorderHeight;
         bubbleBorder.localPosition = borderPosition;
-    }
-
-    private void OnDestroy()
-    {
-        cts?.Cancel();
-        cts = null;
     }
 }

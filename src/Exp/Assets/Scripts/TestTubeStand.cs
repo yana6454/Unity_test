@@ -1,6 +1,4 @@
-using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 /// <summary>
@@ -8,8 +6,6 @@ using UnityEngine;
 /// </summary>
 public class TestTubeStand : SelectableBase
 {
-    private CancellationTokenSource cts = new();
-
     [Header("Stand")]
     [SerializeField]
     private List<Transform> tubePositions;
@@ -27,11 +23,11 @@ public class TestTubeStand : SelectableBase
     {
         if (combinedObject.Type == SelectableType.TestTube)
         {
-            AddTubeAsync(combinedObject.gameObject.GetComponent<TestTube>(), cts.Token).Forget();
+            AddTube(combinedObject.gameObject.GetComponent<TestTube>());
         }
     }
 
-    private async UniTask AddTubeAsync(TestTube tube, CancellationToken token)
+    private void AddTube(TestTube tube)
     {
         tube.gameObject.GetComponent<Collider>().isTrigger = true;
         tube.gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -47,15 +43,9 @@ public class TestTubeStand : SelectableBase
             if (tubes[i] == null)
             {
                 tubes[i] = tube;
-                await MoveAsync(tube.transform, tubePositions[i], true, token);
+                tube.Move(tubePositions[i], true, true);
                 break;
             }
         }
-    }
-
-    private void OnDestroy()
-    {
-        cts?.Cancel();
-        cts = null;
     }
 }

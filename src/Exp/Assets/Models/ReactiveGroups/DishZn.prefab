@@ -1258,8 +1258,8 @@ GameObject:
   - component: {fileID: 411650367649524652}
   - component: {fileID: 2294894255412120584}
   - component: {fileID: 3180172836272457147}
-  - component: {fileID: 672050988347383233}
   - component: {fileID: 4668260499084522032}
+  - component: {fileID: 795884231697223339}
   m_Layer: 6
   m_Name: DishZn
   m_TagString: SolidReactive
@@ -1411,21 +1411,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &672050988347383233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5523333012536343767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6e6a8216f452134ab7c82b2cf82cd80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 3
-  reactivePrefab: {fileID: 7585656643027527602, guid: 843ede53e20e1c6408cf03c117e871f4, type: 3}
-  reactionPower: 0.5
 --- !u!114 &4668260499084522032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1444,6 +1429,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &795884231697223339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5523333012536343767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4528642c3c95d429e1ae3ef4fdc8a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  reactivePrefab: {fileID: 7147666855917061742, guid: 843ede53e20e1c6408cf03c117e871f4, type: 3}
+  reactionPower: 0.5
 --- !u!1 &5639000398155045782
 GameObject:
   m_ObjectHideFlags: 0
