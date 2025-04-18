@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ScreenController : MonoBehaviour
@@ -21,6 +22,8 @@ public class ScreenController : MonoBehaviour
 
     private readonly ScreenBase[] screens = new ScreenBase[3];
 
+    public event Action<bool> InteractionEnable;
+
     private void Awake()
     {
         menuCamera.enabled = true;
@@ -31,11 +34,17 @@ public class ScreenController : MonoBehaviour
         screens[2] = task;
 
         menu.StartClicked += OnStartClicked;
+        game.TaskCkicked += OnTaskClicked;
+        game.CheckCkicked += OnCheckCkicked;
+        task.BackCLicked += OnTaskBackClicked;
     }
 
     private void OnDestroy()
     {
         menu.StartClicked -= OnStartClicked;
+        game.TaskCkicked -= OnTaskClicked;
+        game.CheckCkicked -= OnCheckCkicked;
+        task.BackCLicked -= OnTaskBackClicked;
     }
 
     private void Start()
@@ -46,6 +55,7 @@ public class ScreenController : MonoBehaviour
         }
 
         menu.Show();
+        InteractionEnable?.Invoke(false);
     }
 
     private void OnStartClicked()
@@ -54,5 +64,25 @@ public class ScreenController : MonoBehaviour
         game.Show();
         menuCamera.enabled = false;
         gameCamera.enabled = true;
+        InteractionEnable?.Invoke(true);
+    }
+
+    private void OnTaskClicked()
+    {
+        game.Hide();
+        task.Show();
+        InteractionEnable?.Invoke(false);
+    }
+
+    private void OnCheckCkicked()
+    {
+        Debug.LogWarning("Thwre will be check of task completion");
+    }
+
+    private void OnTaskBackClicked()
+    {
+        task.Hide();
+        game.Show();
+        InteractionEnable?.Invoke(false);
     }
 }
