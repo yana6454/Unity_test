@@ -20,26 +20,28 @@ public class InteractionManager : MonoBehaviour
         interactionMask = newMask;
     }
 
-    public bool AddSelectableObject(SelectableBase obj)
+    public void AddSelectableObjects(List<SelectableBase> objects)
+    {
+        foreach (var obj in objects)
+        {
+            AddSelectableObject(obj);
+        }
+    }
+
+    public void AddSelectableObject(SelectableBase obj)
     {
         if (!interactableObjects.Contains(obj))
         {
             interactableObjects.Add(obj);
-            return true;
         }
-
-        return false;
     }
 
-    public bool RemoveSelectableObject(SelectableBase obj)
+    public void RemoveSelectableObject(SelectableBase obj)
     {
         if (interactableObjects.Contains(obj))
         {
             interactableObjects.Remove(obj);
-            return true;
         }
-
-        return false;
     }
 
     /// <summary>
