@@ -15,9 +15,9 @@ public abstract class SelectableBase : MonoBehaviour, ISelectable, IMovable
 
     private Outline outline;
 
-    protected bool interactable = true;
+    protected bool interactable;
 
-    private bool isSelected = false;
+    private bool isSelected;
 
     /// <inheritdoc/>
     public SelectableType Type => type;
@@ -84,6 +84,11 @@ public abstract class SelectableBase : MonoBehaviour, ISelectable, IMovable
     public virtual void Move(Transform target, bool rotate, bool arch, float duration)
     {
         MoveAsync(target, rotate, arch, duration, CTS.Token).Forget();
+    }
+
+    public void EnableInteraction(bool interactable)
+    {
+        this.interactable = interactable;
     }
 
     private async UniTask MoveAsync(Transform target, bool rotate, bool arch, float duration, CancellationToken token)

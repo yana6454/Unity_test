@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class ScreenController : MonoBehaviour
 {
+    [SerializeField]
+    private InteractionManager interactionManager;
+
     [Header("Cameras")]
     [SerializeField]
     private Camera menuCamera;
@@ -55,7 +58,7 @@ public class ScreenController : MonoBehaviour
         }
 
         menu.Show();
-        InteractionEnable?.Invoke(false);
+        interactionManager.EnableInteractions(false);
     }
 
     private void OnStartClicked()
@@ -64,14 +67,14 @@ public class ScreenController : MonoBehaviour
         game.Show();
         menuCamera.enabled = false;
         gameCamera.enabled = true;
-        InteractionEnable?.Invoke(true);
+        interactionManager.EnableInteractions(true);
     }
 
     private void OnTaskClicked()
     {
         game.Hide();
         task.Show();
-        InteractionEnable?.Invoke(false);
+        interactionManager.EnableInteractions(false);
     }
 
     private void OnCheckCkicked()
@@ -83,6 +86,6 @@ public class ScreenController : MonoBehaviour
     {
         task.Hide();
         game.Show();
-        InteractionEnable?.Invoke(false);
+        interactionManager.EnableInteractions(true);
     }
 }
