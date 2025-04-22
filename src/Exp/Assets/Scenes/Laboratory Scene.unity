@@ -9283,6 +9283,10 @@ PrefabInstance:
       propertyPath: stuffParent
       value: 
       objectReference: {fileID: 1512875302}
+    - target: {fileID: 1566218448252788340, guid: f69c505f3536e83428fef00bb55e8e36, type: 3}
+      propertyPath: screenController
+      value: 
+      objectReference: {fileID: 5989680461666072038}
     - target: {fileID: 2229301620044476630, guid: f69c505f3536e83428fef00bb55e8e36, type: 3}
       propertyPath: m_Name
       value: Managers
@@ -9470,6 +9474,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
+--- !u!114 &5989680461666072038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 23646699623217809, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
+  m_PrefabInstance: {fileID: 5989680461666072037}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088f8bb5f9a08604882e7c8b0658ece9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7445462500191107302
 PrefabInstance:
   m_ObjectHideFlags: 0

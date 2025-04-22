@@ -27,6 +27,8 @@ public class ScreenController : MonoBehaviour
 
     public event Action<bool> InteractionEnable;
 
+    public event Action<int> ExperimentStarted;
+
     private void Awake()
     {
         menuCamera.enabled = true;
@@ -61,6 +63,11 @@ public class ScreenController : MonoBehaviour
         interactionManager.EnableInteractions(false);
     }
 
+    public void UpdateExperimentData(string title, string description)
+    {
+        task.SetExperimentData(title, description);
+    }
+
     private void OnStartClicked()
     {
         menu.Hide();
@@ -68,6 +75,7 @@ public class ScreenController : MonoBehaviour
         menuCamera.enabled = false;
         gameCamera.enabled = true;
         interactionManager.EnableInteractions(true);
+        ExperimentStarted?.Invoke(0);
     }
 
     private void OnTaskClicked()

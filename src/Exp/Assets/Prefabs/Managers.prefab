@@ -89,6 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stuffParent: {fileID: 0}
+  screenController: {fileID: 0}
+  experiment1Config: {fileID: 11400000, guid: b02104ad7f9a55044897694f00129207, type: 2}
 --- !u!1 &2229301620044476630
 GameObject:
   m_ObjectHideFlags: 0

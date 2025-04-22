@@ -11,5 +11,7 @@ public interface IExperiment
 
     ExperimentStuffBase Stuff { get; }
 
+    void Initialize(ExperimentConfig config, Transform stuffParent);
+
     void Start();
 }

@@ -6,25 +6,32 @@ using System.Collections.Generic;
 /// </summary>
 public class Experiment1 : IExperiment
 {
-    [SerializeField]
     private ExperimentConfig config;
 
     public string Title => config.Title;
 
     public string Description => config.Description;
 
-    public ExperimentStuffBase Stuff => config.Stuff;
+    private ExperimentStuffBase stuff;
+
+    public ExperimentStuffBase Stuff => stuff;
 
     private List<SelectableBase> stuffList;
 
-    public void Start()
+    public void Initialize(ExperimentConfig config, Transform stuffParent)
     {
-        stuffList = config.Stuff.GetStuffList();
+        this.config = config;
+        stuff = Object.Instantiate(config.Stuff, stuffParent);
+        stuffList = stuff.GetStuffList();
 
         foreach (var stuff in stuffList)
         {
             stuff.Combined += OnStuffCombined;
         }
+    }
+
+    public void Start()
+    {
     }
 
     private void Destroy()

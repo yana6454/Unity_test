@@ -9,6 +9,9 @@ public class ScreenTask : ScreenBase
     private Button btn_Back;
 
     [SerializeField]
+    private TMP_Text txt_Title;
+
+    [SerializeField]
     private TMP_Text txt_TaskText;
 
     public event Action BackCLicked;
@@ -23,9 +26,13 @@ public class ScreenTask : ScreenBase
         btn_Back.onClick.RemoveListener(OnBtnBackClicked);
     }
 
-    public void SetTaskText(string text)
+    /// <summary>
+    /// Обновляет текст названия эксперимента и его описание.
+    /// </summary>
+    public void SetExperimentData(string title, string description)
     {
-        txt_TaskText.text = text;
+        txt_Title.text = title;
+        txt_TaskText.text = description;
     }
 
     private void OnBtnBackClicked()
