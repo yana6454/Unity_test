@@ -9,7 +9,7 @@ public interface IExperiment
 
     string Description { get; }
 
-    ExperimentStuff Stuff { get; }
+    ExperimentStuffBase Stuff { get; }
 
     void Start();
 }

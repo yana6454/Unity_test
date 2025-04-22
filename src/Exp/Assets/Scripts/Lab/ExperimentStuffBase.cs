@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExperimentStuff : MonoBehaviour
+public class ExperimentStuffBase : MonoBehaviour
 {
     [SerializeField]
     private List<SelectableBase> stuffList;

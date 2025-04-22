@@ -16,11 +16,11 @@ public class ExperimentConfig : ScriptableObject
 
     [Space]
     [SerializeField]
-    private ExperimentStuff stuffPrefab;
+    private ExperimentStuffBase stuffPrefab;
 
     public string Title => title;
 
     public string Description => description;
 
-    public ExperimentStuff Stuff => stuffPrefab;
+    public ExperimentStuffBase Stuff => stuffPrefab;
 }

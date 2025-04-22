@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -10,6 +11,8 @@ public interface ISelectable
     public SelectableType Type { get; }
 
     public GameObject gameObject { get; }
+
+    public event Action Combined;
 
     public void Select();
 

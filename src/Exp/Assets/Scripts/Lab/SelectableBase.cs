@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 using UnityEngine;
 
@@ -24,6 +25,9 @@ public abstract class SelectableBase : MonoBehaviour, ISelectable, IMovable
 
     /// <inheritdoc/>
     public bool Interactable => interactable;
+
+    /// <inheritdoc/>
+    public event Action Combined;
 
     protected virtual void Start()
     {
