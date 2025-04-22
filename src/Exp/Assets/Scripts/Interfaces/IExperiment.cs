@@ -5,4 +5,11 @@ using UnityEngine;
 /// </summary>
 public interface IExperiment
 {
+    string Title { get; }
+
+    string Description { get; }
+
+    ExperimentStuff Stuff { get; }
+
+    void Start();
 }
