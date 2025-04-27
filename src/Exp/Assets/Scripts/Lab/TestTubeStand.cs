@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -19,11 +20,14 @@ public class TestTubeStand : SelectableBase
         { 4, null },
     };
 
+    public List<TestTube> TestTubes => tubes.Values.Where(item => item != null).ToList();
+
     public override void TryCombine(ISelectable combinedObject)
     {
         if (combinedObject.Type == SelectableType.TestTube)
         {
             AddTube(combinedObject.gameObject.GetComponent<TestTube>());
+            NotifyCombined();
         }
     }
 

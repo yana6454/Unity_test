@@ -50,9 +50,11 @@ public class TestTube : SelectableBase
         {
             case SelectableType.SolidReactiveGroup:
                 AddSolidReactive(combinedObject.gameObject.GetComponent<SolidReactiveGroup>().Generate());
+                NotifyCombined();
                 break;
             case SelectableType.Beaker:
                 combinedObject.gameObject.GetComponent<Beaker>().GetLiquid(this, beakerPosition);
+                NotifyCombined();
                 break;
         }
     }

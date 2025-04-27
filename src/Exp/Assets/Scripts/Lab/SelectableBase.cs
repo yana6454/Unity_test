@@ -78,6 +78,11 @@ public abstract class SelectableBase : MonoBehaviour, ISelectable, IMovable
     /// <inheritdoc/>
     public abstract void TryCombine(ISelectable combinedObject);
 
+    protected void NotifyCombined()
+    {
+        Combined?.Invoke();
+    }
+
     /// <inheritdoc/>
     public virtual void Move(Transform target, bool rotate, bool arch)
     {

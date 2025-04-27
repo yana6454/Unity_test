@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 /// <summary>
 /// Сожержит необходимые данные для эксперимента1 и контролирует его выполнение.
@@ -9,6 +10,9 @@ public class Experiment1 : MonoBehaviour, IExperiment
     [SerializeField]
     private ExperimentStuffBase stuff;
 
+    [SerializeField]
+    private TestTubeStand stand;
+
     private ExperimentData expData;
 
     public string Title => expData.Title;
@@ -16,6 +20,9 @@ public class Experiment1 : MonoBehaviour, IExperiment
     public string Description => expData.Description;
 
     private bool isInitialized;
+
+    /// <inheritdoc/>
+    public event Action Completed;
 
     /// <inheritdoc/>
     public void Initialize(ExperimentData expData)
@@ -62,5 +69,6 @@ public class Experiment1 : MonoBehaviour, IExperiment
 
     private void OnStuffCombined()
     {
+        Debug.LogWarning($"stand count {stand.TestTubes.Count}");
     }
 }
