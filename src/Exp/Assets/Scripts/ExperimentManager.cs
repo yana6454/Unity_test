@@ -11,15 +11,22 @@ public class ExperimentManager : MonoBehaviour
     [SerializeField]
     private ScreenController screenController;
 
-    [Header("Experiment 1")]
+    [Space]
     [SerializeField]
-    private ExperimentConfig experiment1Config;
+    private ExperimentsConfig config;
 
-    private Experiment1 experiment1 = new();
+    [SerializeField]
+    private Experiment1 experiment1;
 
     private void Awake()
     {
         screenController.ExperimentStarted += OnExperimentStarted;
+    }
+
+    private void Start()
+    {
+        experiment1.Initialize(config.exp1);
+        experiment1.Reset();
     }
 
     private void OnDestroy()
@@ -32,9 +39,8 @@ public class ExperimentManager : MonoBehaviour
         switch (index)
         {
             case 0:
-                experiment1.Initialize(experiment1Config, stuffParent);
-                screenController.UpdateExperimentData(experiment1.Title, experiment1.Description);
                 experiment1.Start();
+                screenController.UpdateExperimentData(experiment1.Title, experiment1.Description);
                 break;
         }
     }

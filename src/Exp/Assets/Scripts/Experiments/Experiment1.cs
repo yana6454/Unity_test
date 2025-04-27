@@ -4,41 +4,59 @@ using System.Collections.Generic;
 /// <summary>
 /// Сожержит необходимые данные для эксперимента1 и контролирует его выполнение.
 /// </summary>
-public class Experiment1 : IExperiment
+public class Experiment1 : MonoBehaviour, IExperiment
 {
-    private ExperimentConfig config;
-
-    public string Title => config.Title;
-
-    public string Description => config.Description;
-
+    [SerializeField]
     private ExperimentStuffBase stuff;
 
-    public ExperimentStuffBase Stuff => stuff;
+    private ExperimentData expData;
 
-    private List<SelectableBase> stuffList;
+    public string Title => expData.Title;
 
-    public void Initialize(ExperimentConfig config, Transform stuffParent)
+    public string Description => expData.Description;
+
+    private bool isInitialized;
+
+    /// <inheritdoc/>
+    public void Initialize(ExperimentData expData)
     {
-        this.config = config;
-        stuff = Object.Instantiate(config.Stuff, stuffParent);
-        stuffList = stuff.GetStuffList();
+        this.expData = expData;
 
-        foreach (var stuff in stuffList)
+        foreach (var stuff in stuff.StuffList)
         {
             stuff.Combined += OnStuffCombined;
         }
+
+        isInitialized = true;
     }
 
-    public void Start()
+    private void OnDestroy()
     {
-    }
+        if (!isInitialized)
+        {
+            return;
+        }
 
-    private void Destroy()
-    {
-        foreach (var stuff in stuffList)
+        foreach (var stuff in stuff.StuffList)
         {
             stuff.Combined -= OnStuffCombined;
+        }
+    }
+
+    /// <inheritdoc/>
+    public void Reset()
+    {
+        stuff.gameObject.SetActive(false);
+    }
+
+    /// <inheritdoc/>
+    public void Start()
+    {
+        stuff.gameObject.SetActive(true);
+
+        foreach (var stuff in stuff.StuffList)
+        {
+            stuff.EnableInteraction(true);
         }
     }
 

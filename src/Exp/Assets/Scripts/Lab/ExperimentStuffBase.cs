@@ -6,8 +6,5 @@ public class ExperimentStuffBase : MonoBehaviour
     [SerializeField]
     private List<SelectableBase> stuffList;
 
-    public List<SelectableBase> GetStuffList()
-    {
-        return stuffList;
-    }
+    public List<SelectableBase> StuffList => stuffList;
 }

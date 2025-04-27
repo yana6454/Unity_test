@@ -1,5 +1,3 @@
-using UnityEngine;
-
 /// <summary>
 /// Интерфейс для скриптов контроля экспериментов.
 /// </summary>
@@ -9,9 +7,18 @@ public interface IExperiment
 
     string Description { get; }
 
-    ExperimentStuffBase Stuff { get; }
+    /// <summary>
+    /// Начальная настройка эксперимента.
+    /// </summary>
+    void Initialize(ExperimentData expData);
 
-    void Initialize(ExperimentConfig config, Transform stuffParent);
+    /// <summary>
+    /// Отключение всех объетков, перевод их в начальное состояние.
+    /// </summary>
+    void Reset();
 
+    /// <summary>
+    /// Начало эксперимента.
+    /// </summary>
     void Start();
 }
