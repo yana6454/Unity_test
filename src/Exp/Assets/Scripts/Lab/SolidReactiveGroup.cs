@@ -9,6 +9,7 @@ public class SolidReactiveGroup : SelectableBase
     {
         var reactive = Instantiate(reactivePrefab, transform);
         reactive.transform.position += Vector3.up * 0.03f;
+        reactive.Initialize(this);
         return reactive;
     }
 

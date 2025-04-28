@@ -8,7 +8,16 @@ public class SolidReactive : SelectableBase
 
     public float ReactionPower => reactionPower;
 
+    private SolidReactiveGroup parentGroup;
+
+    public SolidReactiveGroup ParentGroup => parentGroup;
+
     public override void TryCombine(ISelectable combinedObject)
     {
+    }
+
+    public void Initialize(SolidReactiveGroup group)
+    {
+        parentGroup = group;
     }
 }

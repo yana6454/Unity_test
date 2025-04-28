@@ -30,7 +30,6 @@ public static class SelectManager
                 }
 
                 hitObject.TryCombine(selectedObject);
-                Debug.Log($"Combine {selectedObject.gameObject.name} {hitObject.gameObject.name}");
             }
 
             selectedObject.Desilect();

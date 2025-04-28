@@ -98,6 +98,10 @@ public abstract class SelectableBase : MonoBehaviour, ISelectable, IMovable
     public void EnableInteraction(bool interactable)
     {
         this.interactable = interactable;
+        if (!interactable && outline!= null && outline.enabled)
+        {
+            outline.enabled = false;
+        }
     }
 
     private async UniTask MoveAsync(Transform target, bool rotate, bool arch, float duration, CancellationToken token)

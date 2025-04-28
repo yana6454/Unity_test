@@ -36,6 +36,14 @@ public class TestTube : SelectableBase
     [SerializeField]
     private Transform beakerPosition;
 
+    private float liquidAmount;
+
+    public float LiquidAmount => liquidAmount;
+
+    private SolidReactive reactive;
+
+    public SolidReactive Reactive => reactive;
+
     protected override void Start()
     {
         base.Start();
@@ -50,11 +58,9 @@ public class TestTube : SelectableBase
         {
             case SelectableType.SolidReactiveGroup:
                 AddSolidReactive(combinedObject.gameObject.GetComponent<SolidReactiveGroup>().Generate());
-                NotifyCombined();
                 break;
             case SelectableType.Beaker:
                 combinedObject.gameObject.GetComponent<Beaker>().GetLiquid(this, beakerPosition);
-                NotifyCombined();
                 break;
         }
     }
@@ -74,6 +80,7 @@ public class TestTube : SelectableBase
         {
             Vector3 scale = liquid.localScale;
             scale.y = liquidAmount;
+            this.liquidAmount = liquidAmount;
             liquid.localScale = scale;
             liquid.gameObject.SetActive(liquidAmount != 0.0f);
             ps_Bubbles.gameObject.SetActive(liquidAmount != 0.0f);
@@ -81,6 +88,8 @@ public class TestTube : SelectableBase
             Vector3 borderPosition = bubbleBorder.localPosition;
             borderPosition.z = bubbleBorderHeight;
             bubbleBorder.localPosition = borderPosition;
+
+            NotifyCombined();
         }
     }
 
@@ -95,6 +104,10 @@ public class TestTube : SelectableBase
         bubblesShape.mesh = reactive.GetComponent<MeshFilter>().mesh;
         bubblesShapeTransform.localScale = reactive.transform.localScale;
         EnableBubblesAsync(CTS.Token).Forget();
+
+        this.reactive = reactive;
+
+        NotifyCombined();
     }
 
     private async UniTask EnableBubblesAsync(CancellationToken token)
@@ -116,6 +129,8 @@ public class TestTube : SelectableBase
             await UniTask.NextFrame(cancellationToken: token);
         }
 
+        liquidAmount = newLiquidAmount;
+
         liquid.gameObject.SetActive(newLiquidAmount != 0.0f);
 
         ps_Bubbles.gameObject.SetActive(newLiquidAmount != 0.0f);
@@ -123,5 +138,7 @@ public class TestTube : SelectableBase
         Vector3 borderPosition = bubbleBorder.localPosition;
         borderPosition.z = bubbleBorderHeight;
         bubbleBorder.localPosition = borderPosition;
+
+        NotifyCombined();
     }
 }

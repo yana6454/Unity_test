@@ -39,6 +39,8 @@ public class Beaker : SelectableBase
             scale.y = liquidAmount;
             liquid.localScale = scale;
             liquid.gameObject.SetActive(liquidAmount != 0.0f);
+
+            NotifyCombined();
         }
     }
 
@@ -60,6 +62,8 @@ public class Beaker : SelectableBase
             await UniTask.NextFrame(cancellationToken: token);
         }
 
+        NotifyCombined();
+
         liquid.gameObject.SetActive(newLiquidAmount != 0.0f);
     }
 
@@ -68,6 +72,7 @@ public class Beaker : SelectableBase
         Move(targetTransform, true, false, 1f);
         await UniTask.WaitForSeconds(1f, cancellationToken: token);
         tube.SetLiquid(0.3f, true);
+        NotifyCombined();
         await UniTask.WaitForSeconds(0.6f, cancellationToken: token);
         Move(startPosition, true, false, 1f);
     }
