@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System;
 
 /// <summary>
@@ -10,8 +9,37 @@ public class Experiment1 : MonoBehaviour, IExperiment
     [SerializeField]
     private ExperimentStuffBase stuff;
 
+    [Space]
     [SerializeField]
     private TestTubeStand stand;
+
+    [SerializeField]
+    private TestTube testTube1;
+
+    [SerializeField]
+    private TestTube testTube2;
+
+    [SerializeField]
+    private TestTube testTube3;
+
+    [SerializeField]
+    private TestTube testTube4;
+
+    [Space]
+    [SerializeField]
+    private SolidReactiveGroup Mg;
+
+    [SerializeField]
+    private SolidReactiveGroup Fe;
+
+    [SerializeField]
+    private SolidReactiveGroup Zn;
+
+    [SerializeField]
+    private SolidReactiveGroup Cu;
+
+    [SerializeField]
+    private Beaker HCl;
 
     private ExperimentData expData;
 
@@ -20,6 +48,8 @@ public class Experiment1 : MonoBehaviour, IExperiment
     public string Description => expData.Description;
 
     private bool isInitialized;
+
+    private int stepIndex;
 
     /// <inheritdoc/>
     public event Action Completed;
@@ -53,6 +83,7 @@ public class Experiment1 : MonoBehaviour, IExperiment
     /// <inheritdoc/>
     public void Reset()
     {
+        stepIndex = 0;
         stuff.gameObject.SetActive(false);
     }
 
@@ -69,6 +100,15 @@ public class Experiment1 : MonoBehaviour, IExperiment
 
     private void OnStuffCombined()
     {
-        Debug.LogWarning($"stand count {stand.TestTubes.Count}");
+    }
+
+    private void SetupStep(int stepIndex)
+    {
+        switch (stepIndex)
+        {
+            case 0:
+
+                break;
+        }
     }
 }
