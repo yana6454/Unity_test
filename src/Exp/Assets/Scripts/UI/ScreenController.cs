@@ -68,7 +68,7 @@ public class ScreenController : MonoBehaviour
         task.SetExperimentData(title, description, todoList);
     }
 
-    public void CompleteStep(int stepIndex)
+    public void UpdateStep(int stepIndex)
     {
         task.StrikeCompletedStep(stepIndex);
     }
@@ -86,7 +86,7 @@ public class ScreenController : MonoBehaviour
     private void OnTaskClicked()
     {
         game.Hide();
-        task.Show();
+        task.FakeShow();
         interactionManager.EnableInteractions(false);
     }
 
@@ -97,7 +97,8 @@ public class ScreenController : MonoBehaviour
 
     private void OnTaskBackClicked()
     {
-        task.Hide();
+        // Делаю фейковое сокрытие, чтобы оставить список этапов всегда видимым.
+        task.FakeHide();
         game.Show();
         interactionManager.EnableInteractions(true);
     }

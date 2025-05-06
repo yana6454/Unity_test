@@ -802,6 +802,7 @@ MonoBehaviour:
   btn_Back: {fileID: 5980552672109410613}
   txt_Title: {fileID: 697465619939608397}
   txt_TaskText: {fileID: 6073186578354867964}
+  grp_TODOList: {fileID: 7743603965976863974}
   grp_List: {fileID: 9110028999583058460}
   todoList:
   - {fileID: 7529733701046723064}
@@ -814,6 +815,10 @@ MonoBehaviour:
   - {fileID: 5308381574547164475}
   - {fileID: 5475944795049640796}
   - {fileID: 7936912124971164147}
+  hiddenObjects:
+  - {fileID: 1790885487104712404}
+  - {fileID: 999693327221421072}
+  - {fileID: 3852666722810709177}
 --- !u!1 &6255607010186751593
 GameObject:
   m_ObjectHideFlags: 0

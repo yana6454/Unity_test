@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,10 +16,19 @@ public class ScreenTask : ScreenBase
 
     [Header("TODO List")]
     [SerializeField]
+    private Transform grp_TODOList;
+
+    [SerializeField]
     private Transform grp_List;
 
     [SerializeField]
     private TMP_Text[] todoList;
+
+    [Header("fake Show/Hide")]
+    [SerializeField]
+    private GameObject[] hiddenObjects;
+
+    public Transform TODOList => grp_TODOList;
 
     public event Action BackCLicked;
 
@@ -33,6 +40,24 @@ public class ScreenTask : ScreenBase
     private void OnDestroy()
     {
         btn_Back.onClick.RemoveListener(OnBtnBackClicked);
+    }
+
+    public void FakeShow()
+    {
+        Show();
+
+        foreach (var item in hiddenObjects)
+        {
+            item.SetActive(true);
+        }
+    }
+
+    public void FakeHide()
+    {
+        foreach (var item in hiddenObjects)
+        {
+            item.SetActive(false);
+        }
     }
 
     /// <summary>

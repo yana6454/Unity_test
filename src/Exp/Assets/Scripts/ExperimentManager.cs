@@ -53,7 +53,7 @@ public class ExperimentManager : MonoBehaviour
 
     private void OnStepCompleted(int index)
     {
-        screenController.CompleteStep(index);
+        screenController.UpdateStep(index);
     }
 
     private void OnCompleted()
