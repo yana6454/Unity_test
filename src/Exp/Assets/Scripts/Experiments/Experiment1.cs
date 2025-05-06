@@ -30,9 +30,14 @@ public class Experiment1 : MonoBehaviour, IExperiment
 
     public string Description => expData.Description;
 
+    public string[] TODOList => expData.TODOList;
+
     private bool isInitialized;
 
     private int stepIndex;
+
+    /// <inheritdoc/>
+    public event Action<int> StepCompleted;
 
     /// <inheritdoc/>
     public event Action Completed;
@@ -82,6 +87,7 @@ public class Experiment1 : MonoBehaviour, IExperiment
     {
         if (CheckStepCompletion(stepIndex))
         {
+            StepCompleted?.Invoke(stepIndex);
             stepIndex++;
             Debug.Log($"Этап {stepIndex} выполнен");
             SetupStep(stepIndex);
@@ -107,15 +113,7 @@ public class Experiment1 : MonoBehaviour, IExperiment
 
                 stand.EnableInteraction(true);
                 break;
-            case 1: // Налить HCL в пробирки.
-                foreach (var tube in testTubes)
-                {
-                    tube.EnableInteraction(true);
-                }
-
-                HCl.EnableInteraction(true);
-                break;
-            case 2: // Поместить металлы в пробирки.
+            case 1: // Поместить металлы в пробирки.
                 foreach (var tube in testTubes)
                 {
                     tube.EnableInteraction(true);
@@ -126,6 +124,14 @@ public class Experiment1 : MonoBehaviour, IExperiment
                     reactive.EnableInteraction(true);
                 }
 
+                break;
+            case 2: // Налить HCL в пробирки.
+                foreach (var tube in testTubes)
+                {
+                    tube.EnableInteraction(true);
+                }
+
+                HCl.EnableInteraction(true);
                 break;
             case 3: // Завершение эксперимента.
                 break;
@@ -139,13 +145,33 @@ public class Experiment1 : MonoBehaviour, IExperiment
         switch (stepIndex)
         {
             case 0: // Проверяем чтобы количество пробирок в стэнде было 4.
-                if (stand.TestTubes.Count == 4)
+                if (stand.TestTubeCount == 4)
                 {
                     return true;
                 }
 
                 break;
-            case 1: // Чтобы во всех пробирках была кислота.
+            case 1: // Чтобы в каждой пробирке был реактив.
+                bool allHaveReactives = true;
+                foreach (var tube in testTubes)
+                {
+                    allHaveReactives &= tube.Reactive != null;
+
+                    if (tube.Interactable && tube.Reactive != null)
+                    {
+                        // Выключаем интеракции на реактив и пробирку,
+                        // чтобы не сделать дубоирование и в эту не положить другие реактивы.
+                        tube.EnableInteraction(false);
+                        tube.Reactive.ParentGroup.EnableInteraction(false);
+                    }
+                }
+
+                if (allHaveReactives)
+                {
+                    return true;
+                }
+                break;
+            case 2: // Чтобы во всех пробирках была кислота.
                 bool allHaveLiquid = true;
                 foreach (var tube in testTubes)
                 {
@@ -157,30 +183,6 @@ public class Experiment1 : MonoBehaviour, IExperiment
                     return true;
                 }
 
-                break;
-            case 2: // Чтобы в каждой пробирке был реактив.
-                bool allHaveReactives = true;
-                foreach (var tube in stand.TestTubes)
-                {
-                    allHaveReactives &= tube.Reactive != null;
-
-                    if (tube.Interactable && tube.Reactive != null)
-                    {
-                        // Выключаем интеракции на реактив и пробирку,
-                        // чтобы не сделать дубоирование и в эту не положить другие реактивы.
-                        tube.EnableInteraction(false);
-                        tube.Reactive.ParentGroup.EnableInteraction(false);
-                    }
-                    else
-                    {
-                        allHaveReactives = false;
-                    }
-                }
-
-                if (allHaveReactives)
-                {
-                    return true;
-                }
                 break;
         }
 

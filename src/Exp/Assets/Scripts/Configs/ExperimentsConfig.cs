@@ -26,9 +26,14 @@ public struct ExperimentData
     [TextArea(3, 10)]
     public string Description;
 
-    public ExperimentData(string title, string description)
+    [SerializeField]
+    [TextArea(1, 2)]
+    public string[] TODOList;
+
+    public ExperimentData(string title, string description, string[] todo)
     {
         Title = title;
         Description = description;
+        TODOList = todo;
     }
 }

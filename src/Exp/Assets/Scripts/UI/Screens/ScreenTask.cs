@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +15,13 @@ public class ScreenTask : ScreenBase
 
     [SerializeField]
     private TMP_Text txt_TaskText;
+
+    [Header("TODO List")]
+    [SerializeField]
+    private Transform grp_List;
+
+    [SerializeField]
+    private TMP_Text[] todoList;
 
     public event Action BackCLicked;
 
@@ -29,10 +38,31 @@ public class ScreenTask : ScreenBase
     /// <summary>
     /// Обновляет текст названия эксперимента и его описание.
     /// </summary>
-    public void SetExperimentData(string title, string description)
+    public void SetExperimentData(string title, string description, string[] todoTexts)
     {
         txt_Title.text = title;
         txt_TaskText.text = description;
+
+        for (int i = 0; i < todoList.Length; i++)
+        {
+            if (i < todoTexts.Length)
+            {
+                todoList[i].gameObject.SetActive(true);
+                todoList[i].text = $"{i}. {todoTexts[i]}"; ;
+            }
+            else
+            {
+                todoList[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void StrikeCompletedStep(int stepIndex)
+    {
+        if (stepIndex < todoList.Length)
+        {
+            todoList[stepIndex].text = $"<s>{todoList[stepIndex].text}</s>";
+        }
     }
 
     private void OnBtnBackClicked()

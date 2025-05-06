@@ -18,6 +18,8 @@ public class ExperimentManager : MonoBehaviour
     [SerializeField]
     private Experiment1 experiment1;
 
+    private IExperiment currenExperiment;
+
     private void Awake()
     {
         screenController.ExperimentStarted += OnExperimentStarted;
@@ -39,9 +41,25 @@ public class ExperimentManager : MonoBehaviour
         switch (index)
         {
             case 0:
-                experiment1.Start();
-                screenController.UpdateExperimentData(experiment1.Title, experiment1.Description);
+                currenExperiment = experiment1;
                 break;
         }
+
+        currenExperiment.Start();
+        currenExperiment.StepCompleted += OnStepCompleted;
+        currenExperiment.Completed += OnCompleted;
+        screenController.UpdateExperimentData(currenExperiment.Title, currenExperiment.Description, currenExperiment.TODOList);
+    }
+
+    private void OnStepCompleted(int index)
+    {
+        screenController.CompleteStep(index);
+    }
+
+    private void OnCompleted()
+    {
+        currenExperiment.StepCompleted -= OnStepCompleted;
+        currenExperiment.Completed -= OnCompleted;
+        currenExperiment = null;
     }
 }

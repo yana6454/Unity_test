@@ -20,7 +20,19 @@ public class TestTubeStand : SelectableBase
         { 4, null },
     };
 
-    public List<TestTube> TestTubes => tubes.Values.Where(item => item != null).ToList();
+    public int TestTubeCount
+    {
+        get
+        {
+            int count = 0;
+            foreach (var item in tubes.Values)
+            {
+                count += item != null ? 1 : 0;
+            }
+
+            return count;
+        }
+    }
 
     public override void TryCombine(ISelectable combinedObject)
     {

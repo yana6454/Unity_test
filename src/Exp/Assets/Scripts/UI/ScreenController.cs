@@ -63,9 +63,14 @@ public class ScreenController : MonoBehaviour
         interactionManager.EnableInteractions(false);
     }
 
-    public void UpdateExperimentData(string title, string description)
+    public void UpdateExperimentData(string title, string description, string[] todoList)
     {
-        task.SetExperimentData(title, description);
+        task.SetExperimentData(title, description, todoList);
+    }
+
+    public void CompleteStep(int stepIndex)
+    {
+        task.StrikeCompletedStep(stepIndex);
     }
 
     private void OnStartClicked()

@@ -9,6 +9,13 @@ public interface IExperiment
 
     string Description { get; }
 
+    string[] TODOList { get; }
+
+    /// <summary>
+    /// Сигнализирует об успешном выполнении шага эксперимента.
+    /// </summary>
+    event Action<int> StepCompleted;
+
     /// <summary>
     /// Сигнализирует об успешном выполнении эксперимента.
     /// </summary>
