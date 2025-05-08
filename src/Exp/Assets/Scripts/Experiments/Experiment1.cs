@@ -40,7 +40,7 @@ public class Experiment1 : MonoBehaviour, IExperiment
     public event Action<int> StepCompleted;
 
     /// <inheritdoc/>
-    public event Action Completed;
+    public event Action<Transform> Completed;
 
     /// <inheritdoc/>
     public void Initialize(ExperimentData expData)
@@ -134,6 +134,7 @@ public class Experiment1 : MonoBehaviour, IExperiment
                 HCl.EnableInteraction(true);
                 break;
             case 3: // Завершение эксперимента.
+                Completed?.Invoke(stuff.EndCameraPosition);
                 break;
         }
     }

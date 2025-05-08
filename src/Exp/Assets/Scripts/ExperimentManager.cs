@@ -22,7 +22,7 @@ public class ExperimentManager : MonoBehaviour
 
     private void Awake()
     {
-        screenController.ExperimentStarted += OnExperimentStarted;
+        screenController.BtnExperimentStartClicked += OnExperimentStarted;
     }
 
     private void Start()
@@ -33,7 +33,7 @@ public class ExperimentManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        screenController.ExperimentStarted -= OnExperimentStarted;
+        screenController.BtnExperimentStartClicked -= OnExperimentStarted;
     }
 
     private void OnExperimentStarted(int index)
@@ -56,8 +56,9 @@ public class ExperimentManager : MonoBehaviour
         screenController.UpdateStep(index);
     }
 
-    private void OnCompleted()
+    private void OnCompleted(Transform endCameraPosition)
     {
+        screenController.ShowExperimentEnding(endCameraPosition);
         currenExperiment.StepCompleted -= OnStepCompleted;
         currenExperiment.Completed -= OnCompleted;
         currenExperiment = null;

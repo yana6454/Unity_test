@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 /// <summary>
 /// Интерфейс для скриптов контроля экспериментов.
@@ -18,8 +19,9 @@ public interface IExperiment
 
     /// <summary>
     /// Сигнализирует об успешном выполнении эксперимента.
+    /// Transform здесь передаётся позиция куда нужно будет перелететь камерею.
     /// </summary>
-    event Action Completed;
+    event Action<Transform> Completed;
 
     /// <summary>
     /// Начальная настройка эксперимента.

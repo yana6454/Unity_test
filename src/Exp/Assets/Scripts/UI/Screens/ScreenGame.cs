@@ -8,22 +8,28 @@ public class ScreenGame : ScreenBase
     private Button btn_Task;
 
     [SerializeField]
-    private Button btn_Check;
+    private Button btn_Next;
 
     public event Action TaskCkicked;
     
-    public event Action CheckCkicked;
+    public event Action NextCkicked;
 
     private void Awake()
     {
         btn_Task.onClick.AddListener(OnBtnTaskClicked);
-        btn_Check.onClick.AddListener(OnBtnCheckClicked);
+        btn_Next.onClick.AddListener(OnBtnNextClicked);
+        btn_Next.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
     {
         btn_Task.onClick.RemoveListener(OnBtnTaskClicked);
-        btn_Check.onClick.RemoveListener(OnBtnCheckClicked);
+        btn_Next.onClick.RemoveListener(OnBtnNextClicked);
+    }
+
+    public void SetBtnNextActive(bool isActive)
+    {
+        btn_Next.gameObject.SetActive(isActive);
     }
 
     private void OnBtnTaskClicked()
@@ -31,8 +37,8 @@ public class ScreenGame : ScreenBase
         TaskCkicked?.Invoke();
     }
 
-    private void OnBtnCheckClicked()
+    private void OnBtnNextClicked()
     {
-        CheckCkicked?.Invoke();
+        NextCkicked?.Invoke();
     }
 }

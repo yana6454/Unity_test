@@ -84,13 +84,7 @@ public abstract class SelectableBase : MonoBehaviour, ISelectable, IMovable
     }
 
     /// <inheritdoc/>
-    public virtual void Move(Transform target, bool rotate, bool arch)
-    {
-        MoveAsync(target, rotate, arch, MovingDuration, CTS.Token).Forget();
-    }
-
-    /// <inheritdoc/>
-    public virtual void Move(Transform target, bool rotate, bool arch, float duration)
+    public virtual void Move(Transform target, bool rotate, bool arch, float duration = MovingDuration)
     {
         MoveAsync(target, rotate, arch, duration, CTS.Token).Forget();
     }

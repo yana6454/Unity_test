@@ -8,10 +8,10 @@ public class ScreenController : MonoBehaviour
 
     [Header("Cameras")]
     [SerializeField]
-    private Camera menuCamera;
+    private CameraController menuCamera;
 
     [SerializeField]
-    private Camera gameCamera;
+    private CameraController gameCamera;
 
     [Header("Screens")]
     [SerializeField]
@@ -27,12 +27,12 @@ public class ScreenController : MonoBehaviour
 
     public event Action<bool> InteractionEnable;
 
-    public event Action<int> ExperimentStarted;
+    public event Action<int> BtnExperimentStartClicked;
 
     private void Awake()
     {
-        menuCamera.enabled = true;
-        gameCamera.enabled = false;
+        menuCamera.SetCameraActive(true);
+        gameCamera.SetCameraActive(false);
 
         screens[0] = menu;
         screens[1] = game;
@@ -40,7 +40,7 @@ public class ScreenController : MonoBehaviour
 
         menu.StartClicked += OnStartClicked;
         game.TaskCkicked += OnTaskClicked;
-        game.CheckCkicked += OnCheckCkicked;
+        game.NextCkicked += OnBtnNextCkicked;
         task.BackCLicked += OnTaskBackClicked;
     }
 
@@ -48,7 +48,7 @@ public class ScreenController : MonoBehaviour
     {
         menu.StartClicked -= OnStartClicked;
         game.TaskCkicked -= OnTaskClicked;
-        game.CheckCkicked -= OnCheckCkicked;
+        game.NextCkicked -= OnBtnNextCkicked;
         task.BackCLicked -= OnTaskBackClicked;
     }
 
@@ -73,14 +73,20 @@ public class ScreenController : MonoBehaviour
         task.StrikeCompletedStep(stepIndex);
     }
 
+    public void ShowExperimentEnding(Transform endCameraPosition)
+    {
+        gameCamera.Move(endCameraPosition);
+        game.SetBtnNextActive(true);
+    }
+
     private void OnStartClicked()
     {
         menu.Hide();
         game.Show();
-        menuCamera.enabled = false;
-        gameCamera.enabled = true;
+        menuCamera.SetCameraActive(false);
+        gameCamera.SetCameraActive(true);
         interactionManager.EnableInteractions(true);
-        ExperimentStarted?.Invoke(0);
+        BtnExperimentStartClicked?.Invoke(0);
     }
 
     private void OnTaskClicked()
@@ -90,9 +96,19 @@ public class ScreenController : MonoBehaviour
         interactionManager.EnableInteractions(false);
     }
 
-    private void OnCheckCkicked()
+    private void OnBtnNextCkicked()
     {
-        Debug.LogWarning("Thwre will be check of task completion");
+        Debug.LogWarning("There will be AI block.");
+    }
+
+    private void ReturnToMenu()
+    {
+        game.Hide();
+        task.Hide();
+        menu.Show();
+        interactionManager.EnableInteractions(false);
+        gameCamera.SetCameraActive(false);
+        menuCamera.SetCameraActive(true);
     }
 
     private void OnTaskBackClicked()
