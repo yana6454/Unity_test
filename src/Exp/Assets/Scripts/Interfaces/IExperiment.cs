@@ -6,11 +6,7 @@ using UnityEngine;
 /// </summary>
 public interface IExperiment
 {
-    string Title { get; }
-
-    string Description { get; }
-
-    string[] TODOList { get; }
+    ExperimentData ExperimentData { get; }
 
     /// <summary>
     /// Сигнализирует об успешном выполнении шага эксперимента.

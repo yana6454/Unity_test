@@ -23,11 +23,16 @@ public class ScreenController : MonoBehaviour
     [SerializeField]
     private ScreenTask task;
 
-    private readonly ScreenBase[] screens = new ScreenBase[3];
+    [SerializeField]
+    private ScreenAITask aiTask;
 
     public event Action<bool> InteractionEnable;
 
     public event Action<int> BtnExperimentStartClicked;
+
+    private readonly ScreenBase[] screens = new ScreenBase[4];
+
+    private ExperimentData data;
 
     private void Awake()
     {
@@ -37,19 +42,24 @@ public class ScreenController : MonoBehaviour
         screens[0] = menu;
         screens[1] = game;
         screens[2] = task;
+        screens[3] = aiTask;
 
         menu.StartClicked += OnStartClicked;
         game.TaskCkicked += OnTaskClicked;
-        game.NextCkicked += OnBtnNextCkicked;
+        game.NextCkicked += OnGameNextCkicked;
         task.BackCLicked += OnTaskBackClicked;
+        aiTask.CheckCLicked += OnAITaskCheckClicked;
+        aiTask.NextCLicked += OnAITaskNextClicked;
     }
 
     private void OnDestroy()
     {
         menu.StartClicked -= OnStartClicked;
         game.TaskCkicked -= OnTaskClicked;
-        game.NextCkicked -= OnBtnNextCkicked;
+        game.NextCkicked -= OnGameNextCkicked;
         task.BackCLicked -= OnTaskBackClicked;
+        aiTask.CheckCLicked -= OnAITaskCheckClicked;
+        aiTask.NextCLicked -= OnAITaskNextClicked;
     }
 
     private void Start()
@@ -63,9 +73,11 @@ public class ScreenController : MonoBehaviour
         interactionManager.EnableInteractions(false);
     }
 
-    public void UpdateExperimentData(string title, string description, string[] todoList)
+    public void UpdateExperimentData(ExperimentData data)
     {
-        task.SetExperimentData(title, description, todoList);
+        this.data = data;
+        task.SetExperimentData(data.Title, data.Description, data.TODOList);
+        aiTask.SetAITask(data.AITaskText);
     }
 
     public void UpdateStep(int stepIndex)
@@ -96,9 +108,12 @@ public class ScreenController : MonoBehaviour
         interactionManager.EnableInteractions(false);
     }
 
-    private void OnBtnNextCkicked()
+    private void OnGameNextCkicked()
     {
-        Debug.LogWarning("There will be AI block.");
+        game.Hide();
+        task.Hide();
+        aiTask.Show();
+        interactionManager.EnableInteractions(false);
     }
 
     private void ReturnToMenu()
@@ -117,5 +132,15 @@ public class ScreenController : MonoBehaviour
         task.FakeHide();
         game.Show();
         interactionManager.EnableInteractions(true);
+    }
+
+    private void OnAITaskCheckClicked(string studentAnswer)
+    {
+        Debug.LogWarning("TaskOnCheck");
+    }
+
+    private void OnAITaskNextClicked()
+    {
+
     }
 }

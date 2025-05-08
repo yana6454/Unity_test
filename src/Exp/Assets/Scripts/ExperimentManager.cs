@@ -48,7 +48,7 @@ public class ExperimentManager : MonoBehaviour
         currenExperiment.Start();
         currenExperiment.StepCompleted += OnStepCompleted;
         currenExperiment.Completed += OnCompleted;
-        screenController.UpdateExperimentData(currenExperiment.Title, currenExperiment.Description, currenExperiment.TODOList);
+        screenController.UpdateExperimentData(currenExperiment.ExperimentData);
     }
 
     private void OnStepCompleted(int index)

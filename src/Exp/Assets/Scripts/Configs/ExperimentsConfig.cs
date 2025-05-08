@@ -18,6 +18,7 @@ public class ExperimentsConfig : ScriptableObject
 [Serializable]
 public struct ExperimentData
 {
+    [Header("Experiment Block")]
     [SerializeField]
     [TextArea(1, 2)]
     public string Title;
@@ -30,10 +31,20 @@ public struct ExperimentData
     [TextArea(1, 2)]
     public string[] TODOList;
 
-    public ExperimentData(string title, string description, string[] todo)
+    [Header("AI Block")]
+    [SerializeField]
+    [TextArea(2, 4)]
+    public string AITaskText;
+
+    public ExperimentData(
+        string title,
+        string description,
+        string[] todo,
+        string aiTaskText)
     {
         Title = title;
         Description = description;
         TODOList = todo;
+        AITaskText = aiTaskText;
     }
 }

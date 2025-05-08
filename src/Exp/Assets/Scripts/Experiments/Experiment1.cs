@@ -26,11 +26,7 @@ public class Experiment1 : MonoBehaviour, IExperiment
 
     private ExperimentData expData;
 
-    public string Title => expData.Title;
-
-    public string Description => expData.Description;
-
-    public string[] TODOList => expData.TODOList;
+    public ExperimentData ExperimentData => expData;
 
     private bool isInitialized;
 
