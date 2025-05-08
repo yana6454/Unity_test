@@ -9533,6 +9533,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adca4e4b4e39d184aab091eac256677e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3438173987861881352 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3241670314130548012, guid: f69c505f3536e83428fef00bb55e8e36, type: 3}
+  m_PrefabInstance: {fileID: 3438173987861881350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2843d420fb69a4fb9f96e69e78b6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3676920305843651027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9632,6 +9643,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1332671668}
     - target: {fileID: 23646699623217809, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
+      propertyPath: aiRequestManager
+      value: 
+      objectReference: {fileID: 3438173987861881352}
+    - target: {fileID: 23646699623217809, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
       propertyPath: interactionManager
       value: 
       objectReference: {fileID: 3438173987861881351}
@@ -9721,6 +9736,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4385774230887733341, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056794068345298096, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056794068345298096, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056794068345298096, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5164230483198283011, guid: 6891b4cf04d33154b9557b711ed53dab, type: 3}

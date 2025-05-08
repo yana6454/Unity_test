@@ -6,6 +6,9 @@ public class ScreenController : MonoBehaviour
     [SerializeField]
     private InteractionManager interactionManager;
 
+    [SerializeField]
+    private AIRequestManager aiRequestManager;
+
     [Header("Cameras")]
     [SerializeField]
     private CameraController menuCamera;
@@ -114,16 +117,9 @@ public class ScreenController : MonoBehaviour
         task.Hide();
         aiTask.Show();
         interactionManager.EnableInteractions(false);
-    }
 
-    private void ReturnToMenu()
-    {
-        game.Hide();
-        task.Hide();
-        menu.Show();
-        interactionManager.EnableInteractions(false);
-        gameCamera.SetCameraActive(false);
-        menuCamera.SetCameraActive(true);
+        aiTask.Btn_Next.gameObject.SetActive(false);
+        aiRequestManager.TaskRequestCompleted += OnAITaskRequestCompleted;
     }
 
     private void OnTaskBackClicked()
@@ -136,10 +132,21 @@ public class ScreenController : MonoBehaviour
 
     private void OnAITaskCheckClicked(string studentAnswer)
     {
-        Debug.LogWarning("TaskOnCheck");
+        aiRequestManager.CheckTask(studentAnswer);
     }
 
     private void OnAITaskNextClicked()
+    {
+        aiRequestManager.TaskRequestCompleted -= OnAITaskRequestCompleted;
+    }
+
+    private void OnAITaskRequestCompleted(bool success, string response)
+    {
+        aiTask.SetAIAnswer(response);
+        aiTask.Btn_Next.gameObject.SetActive(success);
+    }
+
+    private void OnAITestRequestCompleted(bool success, string response)
     {
 
     }

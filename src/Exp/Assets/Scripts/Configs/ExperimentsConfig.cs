@@ -36,15 +36,21 @@ public struct ExperimentData
     [TextArea(2, 4)]
     public string AITaskText;
 
+    [SerializeField]
+    [TextArea(1, 4)]
+    public string AITaskAdditionalInfo;
+
     public ExperimentData(
         string title,
         string description,
         string[] todo,
-        string aiTaskText)
+        string aiTaskText,
+        string aiTaslAdditionalInfo)
     {
         Title = title;
         Description = description;
         TODOList = todo;
         AITaskText = aiTaskText;
+        AITaskAdditionalInfo = aiTaslAdditionalInfo;
     }
 }
