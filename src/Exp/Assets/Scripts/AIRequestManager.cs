@@ -7,14 +7,24 @@ using System;
 
 public class AIRequestManager : MonoBehaviour
 {
+    private enum RequestType
+    {
+        Task,
+        TestGeneration,
+        TestCheck,
+        Result
+    }
+
     [SerializeField]
     private AIConfiguration config;
 
     private ExperimentData experimentData;
 
-    public event Action<bool, string> TaskRequestCompleted;
+    public event Action<bool, string> TaskCheckCompleted;
 
-    public event Action<bool, string> TestRequestCompleted;
+    public event Action<bool, string[]> TestGernerated;
+
+    public event Action<bool, string> TestCheckCompleted;
 
     public void SetExperimentData(ExperimentData data)
     {
@@ -31,13 +41,47 @@ public class AIRequestManager : MonoBehaviour
             $"Ответ ученика: \n{studentAnswer}\n\n" +
             config.TaskEndPrompt;
 
+        var request = CreateRequest(requestText);
+        StartCoroutine(RequestRoutine(request, RequestType.Task));
+    }
+
+    public void GenerateTest()
+    {
+        var requestText =
+            config.TestGenerationStartPrompt + "\n" +
+            experimentData.Description + "\n\n" +
+            config.TestGenerationEndPrompt;
+
+        var request = CreateRequest(requestText);
+        StartCoroutine(RequestRoutine(request, RequestType.TestGeneration));
+    }
+
+    public void CheckTest((string, string)[] questions)
+    {
+        string combinedAnswers = "";
+        foreach (var q in questions)
+        {
+            combinedAnswers += $"Вопрос: {q.Item1}\nОтвет: {q.Item2}\n";
+        }
+
+        var requestText =
+            config.TestCheckStartPrompt + "\n\n" +
+            combinedAnswers + "\n" +
+            config.TestCheckEndPrompt;
+
+        var request = CreateRequest(requestText);
+        StartCoroutine(RequestRoutine(request, RequestType.TestCheck));
+    }
+
+    private UnityWebRequest CreateRequest(string content)
+    {
         var jsonBody = new
         {
             model = config.AIModel,
             messages = new[] {
                 new {
                     role = "user",
-                    content = requestText
+                    content = content
                 }
             }
         };
@@ -52,35 +96,54 @@ public class AIRequestManager : MonoBehaviour
         request.SetRequestHeader("Authorization", $"Bearer {config.APIKey}");
         request.timeout = 30;
 
-        StartCoroutine(CheckTaskRoutine(request));
+        return request;
     }
 
-    private IEnumerator CheckTaskRoutine(UnityWebRequest request)
+    private IEnumerator RequestRoutine(UnityWebRequest request, RequestType type)
     {
         yield return request.SendWebRequest();
 
+        (bool, string) routineResult;
+
         if (request.result == UnityWebRequest.Result.Success)
         {
-            HandleAIResponse(request.downloadHandler.text);
+            routineResult = HandleResponse(request.downloadHandler.text);
         }
         else
         {
-            TaskRequestCompleted?.Invoke(false, "Ошибка связи с Mistral API. Попробуйте снова.");
+            routineResult = (false, "Ошибка связи с Mistral API. Попробуйте снова.");
+            // TaskRequestCompleted?.Invoke(false, "Ошибка связи с Mistral API. Попробуйте снова.");
+        }
+
+        switch (type)
+        {
+            case RequestType.Task:
+                TaskCheckCompleted?.Invoke(routineResult.Item1, routineResult.Item2);
+                break;
+            case RequestType.TestGeneration:
+                string[] questions = routineResult.Item2.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                TestGernerated?.Invoke(routineResult.Item1, questions);
+                break;
+            case RequestType.TestCheck:
+                TestCheckCompleted?.Invoke(routineResult.Item1, routineResult.Item2);
+                break;
+            case RequestType.Result:
+                break;
         }
     }
 
-    void HandleAIResponse(string response)
+    private (bool, string) HandleResponse(string response)
     {
         try
         {
             var parsedResponse = JObject.Parse(response);
             string aiText = parsedResponse["choices"]?[0]?["message"]?["content"]?.ToString().Trim();
-            TaskRequestCompleted?.Invoke(true, aiText);
+            return (true, aiText);
         }
         catch (Exception e)
         {
             Debug.LogError($"Ошибка обработки: {e.Message}");
-            TaskRequestCompleted?.Invoke(false, "Ошибка обработки ответа от Mistral.");
+            return (false, "Ошибка обработки ответа от Mistral.");
         }
     }
 }

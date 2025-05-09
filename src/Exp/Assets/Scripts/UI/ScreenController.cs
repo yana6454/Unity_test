@@ -29,23 +29,24 @@ public class ScreenController : MonoBehaviour
     [SerializeField]
     private ScreenAITask aiTask;
 
+    [SerializeField]
+    private ScreenAITest aiTest;
+
     public event Action<bool> InteractionEnable;
 
     public event Action<int> BtnExperimentStartClicked;
 
-    private readonly ScreenBase[] screens = new ScreenBase[4];
-
-    private ExperimentData data;
+    private ScreenBase[] screens;
 
     private void Awake()
     {
         menuCamera.SetCameraActive(true);
         gameCamera.SetCameraActive(false);
 
-        screens[0] = menu;
-        screens[1] = game;
-        screens[2] = task;
-        screens[3] = aiTask;
+        screens = new ScreenBase[5]
+        {
+            menu, game, task, aiTask, aiTest
+        };
 
         menu.StartClicked += OnStartClicked;
         game.TaskCkicked += OnTaskClicked;
@@ -53,6 +54,8 @@ public class ScreenController : MonoBehaviour
         task.BackCLicked += OnTaskBackClicked;
         aiTask.CheckCLicked += OnAITaskCheckClicked;
         aiTask.NextCLicked += OnAITaskNextClicked;
+        aiTest.CheckCLicked += OnAITestCheckClicked;
+        aiTest.ResultCLicked += OnAITestResultClicked;
     }
 
     private void OnDestroy()
@@ -63,6 +66,8 @@ public class ScreenController : MonoBehaviour
         task.BackCLicked -= OnTaskBackClicked;
         aiTask.CheckCLicked -= OnAITaskCheckClicked;
         aiTask.NextCLicked -= OnAITaskNextClicked;
+        aiTest.CheckCLicked -= OnAITestCheckClicked;
+        aiTest.ResultCLicked -= OnAITestResultClicked;
     }
 
     private void Start()
@@ -78,8 +83,8 @@ public class ScreenController : MonoBehaviour
 
     public void UpdateExperimentData(ExperimentData data)
     {
-        this.data = data;
         task.SetExperimentData(data.Title, data.Description, data.TODOList);
+        aiRequestManager.SetExperimentData(data);
         aiTask.SetAITask(data.AITaskText);
     }
 
@@ -119,7 +124,7 @@ public class ScreenController : MonoBehaviour
         interactionManager.EnableInteractions(false);
 
         aiTask.Btn_Next.gameObject.SetActive(false);
-        aiRequestManager.TaskRequestCompleted += OnAITaskRequestCompleted;
+        aiRequestManager.TaskCheckCompleted += OnTaskCheckCompleted;
     }
 
     private void OnTaskBackClicked()
@@ -137,17 +142,43 @@ public class ScreenController : MonoBehaviour
 
     private void OnAITaskNextClicked()
     {
-        aiRequestManager.TaskRequestCompleted -= OnAITaskRequestCompleted;
+        aiTask.Hide();
+        aiRequestManager.TaskCheckCompleted -= OnTaskCheckCompleted;
+
+        aiTest.Show();
+        aiTest.Btn_Result.gameObject.SetActive(false);
+        aiRequestManager.TestGernerated += OnTestGenerated;
+        aiRequestManager.TestCheckCompleted += OnTestCheckCompleted;
+
+        aiRequestManager.GenerateTest();
+        aiTest.StartQuestionGenerating();
     }
 
-    private void OnAITaskRequestCompleted(bool success, string response)
+    private void OnTaskCheckCompleted(bool success, string response)
     {
         aiTask.SetAIAnswer(response);
         aiTask.Btn_Next.gameObject.SetActive(success);
     }
 
-    private void OnAITestRequestCompleted(bool success, string response)
+    private void OnAITestCheckClicked((string, string)[] results)
     {
+        aiRequestManager.CheckTest(results);
+    }
 
+    private void OnAITestResultClicked()
+    {
+        aiRequestManager.TestGernerated -= OnTestGenerated;
+        aiRequestManager.TestCheckCompleted -= OnTestCheckCompleted;
+    }
+
+    private void OnTestGenerated(bool success, string[] results)
+    {
+        aiTest.SetQuestions(results);
+    }
+
+    private void OnTestCheckCompleted(bool success, string result)
+    {
+        aiTest.SetQuestionsAnswer(result);
+        aiTest.Btn_Result.gameObject.SetActive(success);
     }
 }

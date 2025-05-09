@@ -26,4 +26,22 @@ public class AIConfiguration : ScriptableObject
     [SerializeField]
     [TextArea(1, 4)]
     public string TaskEndPrompt;
+
+    [Header("AI Test Generation")]
+    [SerializeField]
+    [TextArea(1, 4)]
+    public string TestGenerationStartPrompt;
+
+    [SerializeField]
+    [TextArea(1, 4)]
+    public string TestGenerationEndPrompt;
+
+    [Header("AI Test Check")]
+    [SerializeField]
+    [TextArea(1, 4)]
+    public string TestCheckStartPrompt;
+
+    [SerializeField]
+    [TextArea(1, 4)]
+    public string TestCheckEndPrompt;
 }
