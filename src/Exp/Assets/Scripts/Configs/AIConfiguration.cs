@@ -44,4 +44,9 @@ public class AIConfiguration : ScriptableObject
     [SerializeField]
     [TextArea(1, 4)]
     public string TestCheckEndPrompt;
+
+    [Header("Result")]
+    [SerializeField]
+    [TextArea(1, 4)]
+    public string ResultEndPrompt;
 }

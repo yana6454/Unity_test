@@ -41,6 +41,8 @@ public class ScreenAITest : ScreenBase
 
     public Button Btn_Result => btn_Result;
 
+    public string AITestResult => txt_Answer.text;
+
     public event Action<(string, string)[]> CheckCLicked;
 
     public event Action ResultCLicked;

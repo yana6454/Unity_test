@@ -26,6 +26,8 @@ public class AIRequestManager : MonoBehaviour
 
     public event Action<bool, string> TestCheckCompleted;
 
+    public event Action<bool, string> ResultGot;
+
     public void SetExperimentData(ExperimentData data)
     {
         experimentData = data;
@@ -71,6 +73,21 @@ public class AIRequestManager : MonoBehaviour
 
         var request = CreateRequest(requestText);
         StartCoroutine(RequestRoutine(request, RequestType.TestCheck));
+    }
+
+    public void GetResult(string taskResult, string testResult)
+    {
+        var requestText =
+            $"Ученик выполнил задание:\n" + 
+            experimentData.Description + "\n" +
+            $"Получил оценку ввиде отзыва:\n" + 
+            taskResult + "\n" +
+            $"И прошёл тест по этому заданию. На тесте он получил отзыв:\n" +
+            testResult + "\n\n" +
+            config.ResultEndPrompt;
+
+        var request = CreateRequest(requestText);
+        StartCoroutine(RequestRoutine(request, RequestType.Result));
     }
 
     private UnityWebRequest CreateRequest(string content)
@@ -128,6 +145,7 @@ public class AIRequestManager : MonoBehaviour
                 TestCheckCompleted?.Invoke(routineResult.Item1, routineResult.Item2);
                 break;
             case RequestType.Result:
+                ResultGot?.Invoke(routineResult.Item1, routineResult.Item2);
                 break;
         }
     }

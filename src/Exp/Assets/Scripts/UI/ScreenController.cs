@@ -32,6 +32,9 @@ public class ScreenController : MonoBehaviour
     [SerializeField]
     private ScreenAITest aiTest;
 
+    [SerializeField]
+    private ScreenResult resultScreen;
+
     public event Action<bool> InteractionEnable;
 
     public event Action<int> BtnExperimentStartClicked;
@@ -43,9 +46,9 @@ public class ScreenController : MonoBehaviour
         menuCamera.SetCameraActive(true);
         gameCamera.SetCameraActive(false);
 
-        screens = new ScreenBase[5]
+        screens = new ScreenBase[6]
         {
-            menu, game, task, aiTask, aiTest
+            menu, game, task, aiTask, aiTest, resultScreen
         };
 
         menu.StartClicked += OnStartClicked;
@@ -56,6 +59,8 @@ public class ScreenController : MonoBehaviour
         aiTask.NextCLicked += OnAITaskNextClicked;
         aiTest.CheckCLicked += OnAITestCheckClicked;
         aiTest.ResultCLicked += OnAITestResultClicked;
+        resultScreen.ResultClicked += OnResultResultClicked;
+        resultScreen.QuitClicked += OnQuitClicked;
     }
 
     private void OnDestroy()
@@ -68,6 +73,8 @@ public class ScreenController : MonoBehaviour
         aiTask.NextCLicked -= OnAITaskNextClicked;
         aiTest.CheckCLicked -= OnAITestCheckClicked;
         aiTest.ResultCLicked -= OnAITestResultClicked;
+        resultScreen.ResultClicked -= OnResultResultClicked;
+        resultScreen.QuitClicked -= OnQuitClicked;
     }
 
     private void Start()
@@ -167,8 +174,15 @@ public class ScreenController : MonoBehaviour
 
     private void OnAITestResultClicked()
     {
+        aiTest.Hide();
         aiRequestManager.TestGernerated -= OnTestGenerated;
         aiRequestManager.TestCheckCompleted -= OnTestCheckCompleted;
+
+        aiRequestManager.ResultGot += OnResultGot;
+        aiRequestManager.GetResult(aiTask.AITaskResult, aiTest.AITestResult);
+
+        resultScreen.Show();
+        resultScreen.Btn_GetResult.gameObject.SetActive(false);
     }
 
     private void OnTestGenerated(bool success, string[] results)
@@ -180,5 +194,22 @@ public class ScreenController : MonoBehaviour
     {
         aiTest.SetQuestionsAnswer(result);
         aiTest.Btn_Result.gameObject.SetActive(success);
+    }
+
+    private void OnResultResultClicked()
+    {
+        aiRequestManager.GetResult(aiTask.AITaskResult, aiTest.AITestResult);
+    }
+
+    private void OnQuitClicked()
+    {
+        aiRequestManager.ResultGot -= OnResultGot;
+        Application.Quit();
+    }
+
+    private void OnResultGot(bool success, string result)
+    {
+        resultScreen.SetResult(result);
+        resultScreen.Btn_GetResult.gameObject.SetActive(!success);
     }
 }

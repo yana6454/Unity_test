@@ -26,6 +26,8 @@ public class ScreenAITask : ScreenBase
 
     public Button Btn_Next => btn_Next;
 
+    public string AITaskResult => txt_AIAnswer.text;
+
     public event Action<string> CheckCLicked;
 
     public event Action NextCLicked;
