@@ -106,14 +106,26 @@ public class ScreenController : MonoBehaviour
         game.SetBtnNextActive(true);
     }
 
-    private void OnStartClicked()
+    private void OnStartClicked(int experimentIndex)
     {
-        menu.Hide();
-        game.Show();
-        menuCamera.SetCameraActive(false);
-        gameCamera.SetCameraActive(true);
-        interactionManager.EnableInteractions(true);
-        BtnExperimentStartClicked?.Invoke(0);
+        if (experimentIndex == 0)
+        {
+            menu.Hide();
+            game.Show();
+            menuCamera.SetCameraActive(false);
+            gameCamera.SetCameraActive(true);
+            interactionManager.EnableInteractions(true);
+        }
+        else
+        {
+            menu.Hide();
+            aiTask.Show();
+
+            aiTask.Btn_Next.gameObject.SetActive(false);
+            aiRequestManager.TaskCheckCompleted += OnTaskCheckCompleted;
+        }
+
+        BtnExperimentStartClicked?.Invoke(experimentIndex);
     }
 
     private void OnTaskClicked()

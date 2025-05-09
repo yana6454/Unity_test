@@ -10,6 +10,14 @@ public class ExperimentsConfig : ScriptableObject
     [Header("Experiment 1")]
     [SerializeField]
     public ExperimentData exp1;
+
+    [Header("Experiment 2")]
+    [SerializeField]
+    public ExperimentData exp2;
+
+    [Header("Experiment 3")]
+    [SerializeField]
+    public ExperimentData exp3;
 }
 
 /// <summary>

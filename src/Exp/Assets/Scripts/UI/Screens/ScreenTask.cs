@@ -73,7 +73,7 @@ public class ScreenTask : ScreenBase
             if (i < todoTexts.Length)
             {
                 todoList[i].gameObject.SetActive(true);
-                todoList[i].text = $"{i}. {todoTexts[i]}"; ;
+                todoList[i].text = $"{i++}. {todoTexts[i]}"; ;
             }
             else
             {
