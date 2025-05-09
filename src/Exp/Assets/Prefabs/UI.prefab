@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionManager: {fileID: 0}
+  aiRequestManager: {fileID: 0}
   menuCamera: {fileID: 0}
   gameCamera: {fileID: 0}
   menu: {fileID: 941637078283881363}
@@ -587,7 +588,7 @@ MonoBehaviour:
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
   m_isRichTextEditingAllowed: 0
-  m_LineLimit: 2
+  m_LineLimit: 8
   m_InputValidator: {fileID: 0}
 --- !u!1 &3548135807652837326
 GameObject:
@@ -1720,7 +1721,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
