@@ -5867,78 +5867,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: grp_Question2
       objectReference: {fileID: 0}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 5790674658323471028, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044388565117975734, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044388565117975734, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044388565117975734, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontSize
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 5790674658323471028, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3909460547005345917, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4273984647778660355, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: sv_Ansver2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4542821125367602158, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: if_Question2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383609507760409494, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383609507760409494, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383609507760409494, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7099020095431626138, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: txt_Question2
-      objectReference: {fileID: 0}
     - target: {fileID: 8445111746737961823, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6018,10 +5946,6 @@ PrefabInstance:
     - target: {fileID: 8445111746737961823, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8713374993042320278, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: txt_QuestionAnswer2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6850,14 +6774,6 @@ PrefabInstance:
       value: "\u041F\u0440\u043E\u0432\u0435\u0440\u0438\u0442\u044C\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4303203385341020545, guid: 0b7237389c0049a4498ea3eef474c0f6, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 4303203385341020545, guid: 0b7237389c0049a4498ea3eef474c0f6, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 5790674658323471028, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 4303203385341020545, guid: 0b7237389c0049a4498ea3eef474c0f6, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
@@ -7245,78 +7161,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: grp_Question3
       objectReference: {fileID: 0}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 5790674658323471028, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044388565117975734, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044388565117975734, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044388565117975734, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontSize
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 5790674658323471028, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3909460547005345917, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4273984647778660355, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: sv_Ansver3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4542821125367602158, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: if_Question3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383609507760409494, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383609507760409494, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383609507760409494, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7099020095431626138, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: txt_Question3
-      objectReference: {fileID: 0}
     - target: {fileID: 8445111746737961823, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7396,10 +7240,6 @@ PrefabInstance:
     - target: {fileID: 8445111746737961823, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8713374993042320278, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: txt_QuestionAnswer3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8642,78 +8482,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: grp_Question1
       objectReference: {fileID: 0}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 5790674658323471028, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 2874456063613175928, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044388565117975734, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044388565117975734, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044388565117975734, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontSize
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 5790674658323471028, guid: 947c1515e014a2b41ba13428ebee8c2d, type: 2}
-    - target: {fileID: 3566747130537133615, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3909460547005345917, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4273984647778660355, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: sv_Ansver1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4542821125367602158, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: if_Question1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383609507760409494, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383609507760409494, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383609507760409494, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7099020095431626138, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: txt_Question1
-      objectReference: {fileID: 0}
     - target: {fileID: 8445111746737961823, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8793,10 +8561,6 @@ PrefabInstance:
     - target: {fileID: 8445111746737961823, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8713374993042320278, guid: 05741d7dddec1dd44a80a67a3b927498, type: 3}
-      propertyPath: m_Name
-      value: txt_QuestionAnswer1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

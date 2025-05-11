@@ -67,13 +67,12 @@ public class ScreenTask : ScreenBase
     {
         txt_Title.text = title;
         txt_TaskText.text = description;
-
         for (int i = 0; i < todoList.Length; i++)
         {
             if (i < todoTexts.Length)
             {
                 todoList[i].gameObject.SetActive(true);
-                todoList[i].text = $"{i++}. {todoTexts[i]}"; ;
+                todoList[i].text = $"{i+1}. {todoTexts[i]}";
             }
             else
             {
