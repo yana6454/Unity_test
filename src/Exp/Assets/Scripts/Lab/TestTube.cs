@@ -19,6 +19,9 @@ public class TestTube : SelectableBase
     [SerializeField]
     private Transform liquid;
 
+    [SerializeField]
+    private MeshRenderer liquidRenderer;
+
     [Header("Bubbles")]
     [SerializeField]    
     private Transform bubbleBorder;
@@ -91,6 +94,11 @@ public class TestTube : SelectableBase
 
             NotifyCombined();
         }
+    }
+
+    public void SetLiquidMaterial(Material liquidMaterial)
+    {
+        liquidRenderer.material = liquidMaterial;
     }
 
     private void AddSolidReactive(SolidReactive reactive)

@@ -332,6 +332,10 @@ PrefabInstance:
       propertyPath: startPosition
       value: 
       objectReference: {fileID: 5521098466505672634}
+    - target: {fileID: 4600678116409283776, guid: 4bbfaf7db349dbd4d8dd8cb949f39592, type: 3}
+      propertyPath: liquidPortionSize
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

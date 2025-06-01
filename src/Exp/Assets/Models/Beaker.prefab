@@ -143,6 +143,8 @@ MonoBehaviour:
   type: 3
   liquid: {fileID: 1493728549229658404}
   startPosition: {fileID: 0}
+  liquidPortionSize: 0
+  liquidrenderer: {fileID: 2185908218944137017}
 --- !u!1 &8142599599076929312
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,5 +380,10 @@ PrefabInstance:
 --- !u!4 &1493728549229658404 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7524815816157498003, guid: 9e2e0339ef3d55d4b95466bd31963a6b, type: 3}
+  m_PrefabInstance: {fileID: 8995744741614062519}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2185908218944137017 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7098422741157227662, guid: 9e2e0339ef3d55d4b95466bd31963a6b, type: 3}
   m_PrefabInstance: {fileID: 8995744741614062519}
   m_PrefabAsset: {fileID: 0}

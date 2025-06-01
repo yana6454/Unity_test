@@ -185,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   liquid: {fileID: 9155157804912538098}
+  liquidRenderer: {fileID: 2448151569802789549}
   bubbleBorder: {fileID: 7176705279626080833}
   ps_Bubbles: {fileID: 4993461902950117675}
   bubblesShape: {fileID: 7102051493594949484}
@@ -269,6 +270,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74cf4697c317f6f42987eef04f16cdeb, type: 3}
+--- !u!23 &2448151569802789549 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3132450584269719846, guid: 74cf4697c317f6f42987eef04f16cdeb, type: 3}
+  m_PrefabInstance: {fileID: 756930005970553739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9155157804912538098 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8470286080359365241, guid: 74cf4697c317f6f42987eef04f16cdeb, type: 3}

@@ -16,6 +16,12 @@ public class Beaker : SelectableBase
     [SerializeField]
     private Transform startPosition;
 
+    [SerializeField]
+    private float liquidPortionSize;
+
+    [SerializeField]
+    private MeshRenderer liquidrenderer;
+
     protected override void Start()
     {
         base.Start();
@@ -49,6 +55,11 @@ public class Beaker : SelectableBase
         GetLiquidAsync(tube, targetTransform, CTS.Token).Forget();
     }
 
+    public Material GetLiquidMaterial()
+    {
+        return liquidrenderer.material;
+    }
+
     private async UniTask SetLiquidAsync(float newLiquidAmount, CancellationToken token)
     {
         liquid.gameObject.SetActive(true);
@@ -71,7 +82,12 @@ public class Beaker : SelectableBase
     {
         Move(targetTransform, true, false, 1f);
         await UniTask.WaitForSeconds(1f, cancellationToken: token);
-        tube.SetLiquid(0.3f, true);
+        if (tube.LiquidAmount == 0)
+        {
+            tube.SetLiquidMaterial(GetLiquidMaterial());
+        }
+
+        tube.SetLiquid(liquidPortionSize, true);
         NotifyCombined();
         await UniTask.WaitForSeconds(0.6f, cancellationToken: token);
         Move(startPosition, true, false, 1f);

@@ -283,6 +283,10 @@ PrefabInstance:
       propertyPath: startPosition
       value: 
       objectReference: {fileID: 2535074571915881346}
+    - target: {fileID: 4600678116409283776, guid: 4bbfaf7db349dbd4d8dd8cb949f39592, type: 3}
+      propertyPath: liquidPortionSize
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7552088073045597651, guid: 4bbfaf7db349dbd4d8dd8cb949f39592, type: 3}
       propertyPath: m_text
       value: FeCl3
@@ -449,6 +453,10 @@ PrefabInstance:
       propertyPath: startPosition
       value: 
       objectReference: {fileID: 708778420341365761}
+    - target: {fileID: 4600678116409283776, guid: 4bbfaf7db349dbd4d8dd8cb949f39592, type: 3}
+      propertyPath: liquidPortionSize
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7552088073045597651, guid: 4bbfaf7db349dbd4d8dd8cb949f39592, type: 3}
       propertyPath: m_text
       value: 'NH4SCN
