@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SolidReactiveGroup : SelectableBase
+public class beaker : SelectableBase
 {
     [SerializeField]
     private SolidReactive reactivePrefab;

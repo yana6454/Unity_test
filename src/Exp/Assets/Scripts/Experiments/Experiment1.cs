@@ -19,7 +19,7 @@ public class Experiment1 : MonoBehaviour, IExperiment
 
     [Space]
     [SerializeField]
-    private SolidReactiveGroup[] reactives;
+    private beaker[] reactives;
 
     [SerializeField]
     private Beaker HCl;

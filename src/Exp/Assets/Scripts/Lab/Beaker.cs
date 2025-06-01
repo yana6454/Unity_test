@@ -19,6 +19,8 @@ public class Beaker : SelectableBase
     [SerializeField]
     private float liquidPortionSize;
 
+    public float LiquidPortionSize => liquidPortionSize;
+
     [SerializeField]
     private MeshRenderer liquidrenderer;
 
